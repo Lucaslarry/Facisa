@@ -42,6 +42,7 @@ while not sair== True:
       op4sair= str(input('Tem certeza que deseja sair? '))
       if op4sair in 'SIMsim':
         print('Foi um prazer, volte sempre')
+        sair=true
         break
       elif op4sair in 'NÃOnãoNAOnao':
         print('Voltando para o menu...')
