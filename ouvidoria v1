@@ -1,58 +1,43 @@
-elogios=[]
-criticas=[]
-sugestoes=[]
-dele=0
+from time import sleep #pra criar um ambiente que eu acho mais agradavel
+opção= 0 
 sair= False
-voltar = False
-comentarios= elogios+criticas+sugestoes
+voltar= False
+comentarios=[]
+validos=['1','2','3','4']
+delete= 0
 nome= str(input('Para iniciar a ouvidoria é necessario dizer seu nome: ')).strip().title()
 print()
+sleep(0.5)
 print('\033[1;34m=\033[m'*5,f'Seja bem vindo a nossa ouvidoria, {nome}','\033[1;34m=\033[m'*5)
-while not sair==True:
+while not sair== True:
+  voltar= False
   print()
+  sleep(1)
   opção= input('Nossas opções são: \n \033[1;30m1\033[m. Comentário \n \033[1;30m2\033[m. Seus comentários \n \033[1;30m3\033[m. Apagar comentário(s) \n \033[1;30m4\033[m. Sair \nO que deseja fazer? ').strip()
+  print()
+  sleep(1)
+  if opção not in validos:
+    print('Você não escolheu uma opção valida')
   if opção=='1':
-    comentario=str(input(' \033[1;30m1\033[m. Fazer um elogio \n \033[1;30m2\033[m. Fazer uma critica \n \033[1;30m3\033[m. Fazer uma sugestão \nO que deseja fazer? '))
-    if comentario=='1':
-      elogio= str(input('Em que você deseja nos elogiar? '))
-      elogios.append(elogio)
-      print('Elogio registrado com \033[1;32msucesso\033[m')
-    elif comentario=='2':
-      critica= str(input('Em que você deseja nos criticar? '))
-      criticas.append(critica)
-      print('Critica registrado com \033[1;32msucesso\033[m')
-    elif comentario=='3':
-      sugestao= str(input('Qual a sugestão que você deseja dar? '))
-      sugestoes.append(sugestao)
-      print('Sugestão registrado com \033[1;32msucesso\033[m')
-  elif opção=='2':
-    ver= str(input(' \033[1;30m1\033[m. Elogios \n \033[1;30m2\033[m. Criticas \n \033[1;30m3\033[m. Sugestões \n \033[1;30m4\033[m. Ver tudo \nQuais comentários você deseja ver? '))
-    if ver=='1':
-      print(f'Seus elogios: {elogios}')
-    elif ver=='2':
-      print(f'Suas criticas: {criticas}')
-    elif ver=='3':
-      print(f'Suas sugestões: {sugestoes}')
-    elif ver=='4':
-      print(f'Seus elogios: {elogios}\nSuas criticas: {criticas}\nSuas sugestões: {sugestoes}')
-  elif opção=='3':
-    apagar= str(input(' \033[1;30m1\033[m. Elogios \n \033[1;30m2\033[m. Criticas \n \033[1;30m3\033[m. Sugestões \n \033[1;30m4\033[m. Apagar tudo \nQuais comentários você deseja apagar? '))
-    if apagar=='1':
-      print(f'Seus elogios: {elogios}')
-      dele= int(input('Qual numero do elogio que você deseja apagar? '))
-      elogios.pop(dele-1)
-      print(f'Você \033[1;31mapagou\033[m o {dele}º elogio')
-    elif apagar=='2':
-      print(f'Suas criticas: {criticas}')
-      dele= int(input('Qual numero da critica que você deseja       apagar? '))
-      criticas.pop(dele-1)
-      print(f'Você \033[1;31mapagou\033[m a {delete}º critica')
-    elif apagar=='3':
-      print(f'Suas sugestões: {sugestoes}')
-      dele= int(input('Qual numero da sugestão que você         deseja apagar? '))
-      sugestoes.pop(dele-1)
-      print(f'Você \033[1;31mapagou\033[m a {delete}º sugestão')
-  elif opção=='4':
+    comentario= str(input('Digite seu comentário:')).strip()
+    print('Comentário registrado com \033[1;32msucesso\033[m')
+    comentarios.append(comentario)   
+  if (opção=='2' and comentarios==[])or(opção=='3' and comentarios==[]):
+    print('Você ainda não fez nenhum comentário')
+  if opção=='2'and comentarios!=[]:
+    print(f'Seus comentários são: {comentarios}')
+  if opção=='3'and comentarios!=[]:
+    opçãodel= str(input(' 1. apagar todos os comentários \n 2. apagar um comentário expecifico \nO que dejesa fazer? ')).strip()
+    print()
+    if opçãodel=='1':
+      comentarios.clear()
+      print('Você \033[1;31mapagou\033[m todos os comentários')
+    if opçãodel=='2':
+      print(comentarios)
+      delete=int(input('Qual comentário que você deseja apagar (use o numero do comentário)'))
+      comentarios.pop(delete-1)
+      print(f'Você \033[1;31mapagou\033[m o {delete}º comentário')
+  if opção=='4':
     while not voltar==True:
       op4sair= str(input('Tem certeza que deseja sair? '))
       if op4sair in 'SIMsim':
