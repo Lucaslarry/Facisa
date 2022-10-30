@@ -1,0 +1,231 @@
+from time import sleep
+elogios=[]
+criticas=[]
+sugestoes=[]
+dele=0
+sair= False
+nome= str(input('Para iniciar a ouvidoria é necessario dizer seu nome: ')).strip().title()
+sleep(0.2)
+print('\033[1;34m=\033[m'*5,f'Seja bem vindo a nossa ouvidoria {nome}','\033[1;34m=\033[m'*5)
+sleep(0.4)
+while not sair==True:
+  voltar= False
+  opção= input('Nossas opções são: \n \033[1;30m1\033[m. Comentário \n \033[1;30m2\033[m. Seus comentários \n \033[1;30m3\033[m. Apagar comentário(s) \n \033[1;30m4\033[m. Sair \nO que deseja fazer? ').strip()
+  if opção=='1':
+    while not voltar==True:
+      comentario=str(input(' \033[1;30m1\033[m. Fazer um elogio \n \033[1;30m2\033[m. Fazer uma critica \n \033[1;30m3\033[m. Fazer uma sugestão \nO que deseja fazer? ')).strip()
+      if comentario=='1':
+          elogio= str(input('Em que você deseja nos elogiar? ')).strip()
+          elogios.append(elogio)
+          print('Elogio registrado com \033[1;32msucesso\033[m')
+          print()
+          sleep(0.4)
+          while not voltar==True:
+            comemais= str(input('Deseja comentar mais alguma coisa? ')).strip().upper()
+            if comemais in 'SIM':
+              break
+            elif comemais in 'NÃONAO':
+              voltar=True
+            else:
+              print('Não entendi. ', end='')      
+      elif comentario=='2':
+        critica= str(input('Em que você deseja nos criticar? ')).strip()
+        criticas.append(critica)
+        print('Critica registrado com \033[1;32msucesso\033[m')
+        print()
+        sleep(0.4)
+        while not voltar==True:
+          comemais= str(input('Deseja comentar mais alguma coisa? ')).strip().upper()
+          if comemais in 'SIM':
+            break
+          elif comemais in 'NÃONAO':
+            voltar=True
+          else:
+            print('Não entendi. ', end='')   
+      elif comentario=='3':
+        sugestao= str(input('Qual a sugestão que você deseja dar? ')).strip()
+        sugestoes.append(sugestao)
+        print('Sugestão registrado com \033[1;32msucesso\033[m')
+        print()
+        sleep(0.4)
+        while not voltar==True:
+          comemais= str(input('Deseja comentar mais alguma coisa? ')).strip().upper()
+          if comemais in 'SIM':
+            break
+          elif comemais in 'NÃONAO':
+            voltar=True    
+          else:
+            print('Não entendi. ', end='') 
+      else:
+        print('Você não escolheu uma opção valida')
+        sleep(0.2)
+  elif opção=='2':
+    while not voltar==True:
+      ver= str(input(' \033[1;30m1\033[m. Elogios \n \033[1;30m2\033[m. Criticas \n \033[1;30m3\033[m. Sugestões \n \033[1;30m4\033[m. Ver tudo \nQuais comentários você deseja ver? ')).strip()
+      if ver=='1':
+        print(f'Seus elogios: {elogios}')
+        sleep(0.4)
+        while not voltar==True:
+          vermais= str(input('Deseja ver mais alguma coisa? ')).strip().upper()
+          if vermais in 'SIM':
+            break
+          elif vermais in 'NÃONAOo':
+            voltar=True
+          else:
+            sleep(0.2)
+            print('Não entendi. ', end='') 
+      elif ver=='2':
+        print(f'Suas criticas: {criticas}')
+        sleep(0.4)
+        while not voltar==True:
+          vermais= str(input('Deseja ver mais alguma coisa? ')).strip().upper()
+          if vermais in 'SIM':
+            break
+          elif vermais in 'NÃONAO':
+            voltar=True
+          else:
+            sleep(0.2)
+            print('Não entendi. ', end='') 
+      elif ver=='3':
+        print(f'Suas sugestões: {sugestoes}')
+        sleep(0.4)
+        while not voltar==True:
+          vermais= str(input('Deseja ver mais alguma coisa? ')).strip().upper()
+          if vermais in 'SIM':
+            break
+          elif vermais in 'NÃONAO':
+            voltar=True
+          else:
+            sleep(0.2)
+            print('Não entendi. ', end='') 
+      elif ver=='4':
+        print(f'Seus elogios: {elogios}\nSuas criticas: {criticas}\nSuas sugestões: {sugestoes}')
+        sleep(0.4)
+        while not voltar==True:
+          vermais= str(input('Deseja ver mais alguma coisa? ')).strip().upper()
+          if vermais in 'SIM':
+            break
+          elif vermais in 'NÃONAO':
+            voltar=True
+          else:
+            sleep(0.2)
+            print('Não entendi. ', end='') 
+      else:  
+        print('Você não escolheu uma opção valida.')
+        sleep(0.2)
+  elif opção=='3':
+    while not voltar==True:
+      apagar= str(input(' \033[1;30m1\033[m. Elogios \n \033[1;30m2\033[m. Criticas \n \033[1;30m3\033[m. Sugestões \n \033[1;30m4\033[m. Apagar tudo \nQuais comentários você deseja apagar? ')).strip()
+      if apagar=='1' and elogios==[]:
+        print('Você ainda não faz nenhum elogio.')
+        sleep(0.2)
+        break
+      elif apagar=='1':
+        print(f'Seus elogios: {elogios}')
+        dele= int(input('Qual numero do elogio que você deseja apagar?'))
+        tamelogio=len(elogios)
+        tamelogio-1
+        if dele > tamelogio:
+          print('Esse elogio não existe')
+        else:
+          elogios.pop(dele-1)
+          print(f'Você \033[1;31mapagou\033[m o {dele}º elogio')
+          sleep(0.4)
+        while not voltar==True:
+          apagarmais= str(input('Deseja apagar mais alguma coisa? ')).strip().upper()
+          if apagarmais in 'SIM':
+            break
+          elif apagarmais in 'NÃONAO':
+            voltar=True 
+          else:
+            sleep(0.2)
+            print('Não entendi. ', end='')
+      elif apagar=='2' and criticas==[]:
+        print('Você ainda não fez nenhuma critica.')
+        sleep(0.2)
+        break
+      elif apagar=='2':
+        print(f'Suas criticas: {criticas}')
+        dele= int(input('Qual numero da critica que você deseja apagar?'))
+        tamcritica=len(criticas)
+        tamcritica-1
+        if dele > tamcritica:
+          print('Não existe esse comentario')
+        else:
+          criticas.pop(dele-1)
+          print(f'Você \033[1;31mapagou\033[m o {dele}º critica')
+          sleep(0.4)
+        while not voltar==True:
+          apagarmais= str(input('Deseja apagar mais alguma coisa? ')).strip().upper()
+          if apagarmais in 'SIM':
+            break
+          elif apagarmais in 'NÃONAO':
+            voltar=True 
+          else:
+            sleep(0.2)
+            print('Não entendi. ', end='')
+      elif apagar=='3' and sugestoes==[]:
+        print('Você ainda não deu nenhuma sugestão.')
+        sleep(0.2)
+        break
+      elif apagar=='3':
+        print(f'Suas sugestões: {sugestoes}')
+        dele= int(input('Qual numero da sugestão que você deseja apagar?'))
+        tamsuges=len(sugestoes)
+        tamsuges-1
+        if dele > tamsuges:
+          print('Não existe esse comentario')
+        else:
+          sugestoes.pop(dele-1)
+          print(f'Você \033[1;31mapagou\033[m a {dele}º sugestão')
+          sleep(0.4)
+        while not voltar==True:
+          apagarmais= str(input('Deseja apagar mais alguma coisa? ')).strip().upper()
+          if apagarmais in 'SIM':
+            break
+          elif apagarmais in 'NÃONAO':
+            voltar=True 
+          else:
+            sleep(0.2)
+            print('Não entendi. ', end='')
+      elif apagar=='4' and sugestoes==[] and criticas==[] and elogios==[]:
+        print('Você ainda não fez nenhum tipo de comentário.')
+        sleep(0.2)
+        break
+      elif apagar=='4':
+        while not voltar==True:
+          apagartudo: ('apagar: \033[1;30m1\033[m. Todas os elogios \n \033[1;30m2\033[m. Todos as criticas \n \033[1;30m3\033[m. Todas as sugestões \n \033[1;30m4\033[m. Apagar tudo \nO que deseja fazer? ')
+          if apagartudo=='1':
+            elogios.clear()
+            voltar=True
+          elif apagartudo=='2':
+            criticas.clear()
+            voltar=True
+          elif apagartudo=='3':
+            sugestoes.clear()  
+            voltar=True
+          elif apagartudo=='4':
+            criticas.clear()
+            elogios.clear()
+            sugestoes.clear() 
+            voltar=True
+          else:
+            print('Você não escolheu uma opção valida.')
+            sleep(0.2)
+  elif opção=='4':
+    while not voltar==True:
+      op4sair= str(input('Tem certeza que deseja sair? ')).strip().upper()
+      if op4sair in 'SIM':
+        print('Foi um prazer, volte sempre')
+        sair=True
+        voltar=True
+      elif op4sair in 'NÃONAO':
+        print('Voltando para o menu...')
+        voltar= True
+        sleep(0.2)
+      else:
+        sleep(0.2)
+        print('Não entendi.', end='')  
+  else:
+    print('Você não escolheu uma opção valida')
+    sleep(0.2)
