@@ -122,12 +122,11 @@ while not sair==True:
         break
       elif apagar=='1':
         print(f'Seus elogios: {elogios}')
-        dele= int(input('Qual numero do elogio que você deseja apagar? '))
-        tamelogio=len(elogios)
-        tamelogio-1
-        if dele > tamelogio:
+        dele= input('Qual numero do elogio que você deseja apagar? ')
+        if dele.isdigit()==False:
           print('Esse elogio não existe')
         else:
+          dele=int(dele)
           elogios.pop(dele-1)
           print(f'Você \033[1;31mapagou\033[m o {dele}º elogio')
           sleep(0.4)
@@ -146,15 +145,14 @@ while not sair==True:
         break
       elif apagar=='2':
         print(f'Suas criticas: {criticas}')
-        dele= int(input('Qual numero da critica que você deseja apagar? '))
-        tamcritica=len(criticas)
-        tamcritica-1
-        if dele > tamcritica:
+        dele=input('Qual numero da critica que você deseja apagar? ')
+        if dele.isdigit()==False:
           print('Não existe esse comentario')
         else:
-          criticas.pop(dele-1)
-          print(f'Você \033[1;31mapagou\033[m o {dele}º critica')
-          sleep(0.4)
+            dele=int(dele)
+            criticas.pop(dele-1)
+            print(f'Você \033[1;31mapagou\033[m o {dele}º critica')
+            sleep(0.4)
         while not voltar==True:
           apagarmais= str(input('Deseja apagar mais alguma coisa? ')).strip().upper()
           if apagarmais in 'SIM':
@@ -170,12 +168,11 @@ while not sair==True:
         break
       elif apagar=='3':
         print(f'Suas sugestões: {sugestoes}')
-        dele= int(input('Qual numero da sugestão que você deseja apagar? '))
-        tamsuges=len(sugestoes)
-        tamsuges-1
-        if dele > tamsuges:
+        dele=input('Qual numero da sugestão que você deseja apagar? ')
+        if dele.isdigit()==False:
           print('Não existe esse comentario')
         else:
+          dele=int(dele)
           sugestoes.pop(dele-1)
           print(f'Você \033[1;31mapagou\033[m a {dele}º sugestão')
           sleep(0.4)
