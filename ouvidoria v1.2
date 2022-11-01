@@ -59,6 +59,7 @@ while not sair==True:
       else:
         print('Você não escolheu uma opção valida')
         sleep(0.2)
+
   elif opção=='2':
     while not voltar==True:
       ver= str(input(' \033[1;30m1\033[m. Elogios \n \033[1;30m2\033[m. Criticas \n \033[1;30m3\033[m. Sugestões \n \033[1;30m4\033[m. Ver tudo \nQuais comentários você deseja ver? ')).strip()
@@ -127,18 +128,21 @@ while not sair==True:
           print('Esse elogio não existe')
         else:
           dele=int(dele)
-          elogios.pop(dele-1)
-          print(f'Você \033[1;31mapagou\033[m o {dele}º elogio')
-          sleep(0.4)
-        while not voltar==True:
-          apagarmais= str(input('Deseja apagar mais alguma coisa? ')).strip().upper()
-          if apagarmais in 'SIM':
-            break
-          elif apagarmais in 'NÃONAO':
-            voltar=True 
+          if len(elogios)<dele:
+            print('esse elogio não existe')
           else:
-            sleep(0.2)
-            print('Não entendi. ', end='')
+            elogios.pop(dele-1)
+            print(f'Você \033[1;31mapagou\033[m o {dele}º elogio')
+            sleep(0.4)
+          while not voltar==True:
+            apagarmais= str(input('Deseja apagar mais alguma coisa? ')).strip().upper()
+            if apagarmais in 'SIM':
+              break
+            elif apagarmais in 'NÃONAO':
+              voltar=True 
+            else:
+              sleep(0.2)
+              print('Não entendi. ', end='')
       elif apagar=='2' and criticas==[]:
         print('Você ainda não fez nenhuma critica.')
         sleep(0.2)
@@ -147,12 +151,15 @@ while not sair==True:
         print(f'Suas criticas: {criticas}')
         dele=input('Qual numero da critica que você deseja apagar? ')
         if dele.isdigit()==False:
-          print('Não existe esse comentario')
-        else:
+          print('Não existe essa critica')
+        else: 
             dele=int(dele)
-            criticas.pop(dele-1)
-            print(f'Você \033[1;31mapagou\033[m o {dele}º critica')
-            sleep(0.4)
+            if len(criticas)<dele:
+              print('Não existe essa critica')
+            else: 
+              criticas.pop(dele-1)
+              print(f'Você \033[1;31mapagou\033[m o {dele}º critica')
+              sleep(0.4)
         while not voltar==True:
           apagarmais= str(input('Deseja apagar mais alguma coisa? ')).strip().upper()
           if apagarmais in 'SIM':
@@ -170,12 +177,15 @@ while not sair==True:
         print(f'Suas sugestões: {sugestoes}')
         dele=input('Qual numero da sugestão que você deseja apagar? ')
         if dele.isdigit()==False:
-          print('Não existe esse comentario')
+          print('Essa sugestão não existe')
         else:
           dele=int(dele)
-          sugestoes.pop(dele-1)
-          print(f'Você \033[1;31mapagou\033[m a {dele}º sugestão')
-          sleep(0.4)
+          if len(sugestoes)<dele:
+            print('Essa sugestão não existe')
+          else:  
+            sugestoes.pop(dele-1)
+            print(f'Você \033[1;31mapagou\033[m a {dele}º sugestão')
+            sleep(0.4)
         while not voltar==True:
           apagarmais= str(input('Deseja apagar mais alguma coisa? ')).strip().upper()
           if apagarmais in 'SIM':
@@ -232,7 +242,7 @@ while not sair==True:
         sleep(0.2)
       else:
         sleep(0.2)
-        print('Não entendi.', end='')  
+        print('Não entendi.', end='')        
   else:
     print('Você não escolheu uma opção valida')
     sleep(0.2)
