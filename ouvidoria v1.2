@@ -64,8 +64,10 @@ while not sair==True:
     while not voltar==True:
       ver= str(input(' \033[1;30m1\033[m. Elogios \n \033[1;30m2\033[m. Criticas \n \033[1;30m3\033[m. Sugestões \n \033[1;30m4\033[m. Ver tudo \nQuais comentários você deseja ver? ')).strip()
       if ver=='1':
-        print(f'Seus elogios: {elogios}')
+        print(f'Seus elogios:')
         sleep(0.4)
+        for x in range(len(elogios)):
+          print(f'{x+1}. {elogios[x]}')
         while not voltar==True:
           vermais= str(input('Deseja ver mais alguma coisa? ')).strip().upper()
           if vermais in 'SIM':
@@ -76,7 +78,9 @@ while not sair==True:
             sleep(0.2)
             print('Não entendi. ', end='') 
       elif ver=='2':
-        print(f'Suas criticas: {criticas}')
+        print(f'Suas criticas:')
+        for c in range(len(criticas)):
+          print(f'{c+1}. {criticas[c]}')
         sleep(0.4)
         while not voltar==True:
           vermais= str(input('Deseja ver mais alguma coisa? ')).strip().upper()
@@ -88,7 +92,9 @@ while not sair==True:
             sleep(0.2)
             print('Não entendi. ', end='') 
       elif ver=='3':
-        print(f'Suas sugestões: {sugestoes}')
+        print(f'Suas sugestões:')
+        for v in range(len(sugestoes)):
+          print(f'{v+1}. {sugestoes[v]}')
         sleep(0.4)
         while not voltar==True:
           vermais= str(input('Deseja ver mais alguma coisa? ')).strip().upper()
@@ -100,7 +106,17 @@ while not sair==True:
             sleep(0.2)
             print('Não entendi. ', end='') 
       elif ver=='4':
-        print(f'Seus elogios: {elogios}\nSuas criticas: {criticas}\nSuas sugestões: {sugestoes}')
+        print(f'Seus \033[1;37melogios\033[m:\n')
+        for o in range(len(elogios)):
+          print(f'{o+1}. {elogios[o]}')
+        print()
+        print(f'Suas \033[1;37mcriticas\033[m:\n')
+        for t in range(len(criticas)):
+          print(f'{t+1}. {criticas[t]}')
+        print()
+        print(f'Suas \033[1;37mSugestões\033[m:\n')
+        for p in range(len(sugestoes)):
+          print(f'{p+1}. {sugestoes[p]}')
         sleep(0.4)
         while not voltar==True:
           vermais= str(input('Deseja ver mais alguma coisa? ')).strip().upper()
