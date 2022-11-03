@@ -138,7 +138,9 @@ while not sair==True:
         sleep(0.2)
         break
       elif apagar=='1':
-        print(f'Seus elogios: {elogios}')
+        print(f'Seus elogios:')
+        for x in range(len(elogios)):
+          print(f'{x+1}. {elogios[x]}')
         dele= input('Qual numero do elogio que você deseja apagar? ')
         if dele.isdigit()==False:
           print('Esse elogio não existe')
@@ -164,7 +166,9 @@ while not sair==True:
         sleep(0.2)
         break
       elif apagar=='2':
-        print(f'Suas criticas: {criticas}')
+        print(f'Suas criticas:')
+        for x in range(len(criticas)):
+          print(f'{x+1}. {criticas[x]}')
         dele=input('Qual numero da critica que você deseja apagar? ')
         if dele.isdigit()==False:
           print('Não existe essa critica')
@@ -190,7 +194,9 @@ while not sair==True:
         sleep(0.2)
         break
       elif apagar=='3':
-        print(f'Suas sugestões: {sugestoes}')
+        print(f'Suas sugestões:')
+        for x in range(len(sugestoes)):
+          print(f'{x+1}. {sugestoes[x]}')
         dele=input('Qual numero da sugestão que você deseja apagar? ')
         if dele.isdigit()==False:
           print('Essa sugestão não existe')
