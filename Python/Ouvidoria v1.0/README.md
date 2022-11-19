@@ -2,4 +2,4 @@
 
 Requirimentos:
 
-<img src="../../imagens/Ouvidoriav1-python.png" align="center" width="700">
+<img src="../../imagens/Ouvidoriav1-python.png" align="center" width="900">
