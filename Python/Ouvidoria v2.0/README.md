@@ -1,4 +1,5 @@
 # Projeto Ouvidoria fase 2 em Python
 
 Requirimentos:
-<img src="../../imagens/Ouvidoriav2-python.png" align="right" width="500">
+
+<img src="../../imagens/Ouvidoriav2-python.png" align="center" width="700">
