@@ -3,9 +3,6 @@
 Aqui estão todos os projetos que estarei fazendo no decorrer da faculdade utilizando a linguagem Python, veja os projetos para mais detalhes da funcionalidade e requirimentos
 
 
-<img src="../imagens/imagempython.png" align="center" width="500">
-
-
 Projetos:
 
 * [Acesse a primeira Ouvidoria clicando aqui](https://github.com/Lucaslarry/Facisa/tree/main/Python/Ouvidoria%20v1.0)
