@@ -1,4 +1,4 @@
-<img src="imagens/imagempython.jpg" align="right" width="200">
+<img src="imagens/imagempython.png" align="right" width="200">
 
 # Projetos da UniFacisa
 
