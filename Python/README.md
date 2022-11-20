@@ -3,7 +3,7 @@
 Aqui estão todos os projetos que estarei fazendo no decorrer da faculdade utilizando a linguagem Python, veja os projetos para mais detalhes de funcionamento e requirimentos
 
 
-<img src="../imagens/bannerouvidoria-python.png" align="right" width="400">
+<img src="../imagens/bannerouvidoria-python.png" align="right" width="300">
 
 
 Projetos:
