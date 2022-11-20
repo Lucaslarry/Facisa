@@ -5,4 +5,4 @@ Repositorios com os projetos da universidade.
 
 Projetos utilizando Python:
 
-* [Acesse clicando aqui](https://github.com/Lucaslarry/Facisa/tree/main/Python)
+* [Projetos em Python](https://github.com/Lucaslarry/Facisa/tree/main/Python)
