@@ -1,4 +1,4 @@
-from time import sleep #só pra não ficar brotando tudo de uma vez na tela
+from time import sleep
 class Ouvidoria:
     elogios= []
     criticas= []
