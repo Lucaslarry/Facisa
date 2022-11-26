@@ -42,8 +42,6 @@ class Ouvidoria:
         """Função para os menus da ouvidoria, ele pede como parametro as opções do menu e apresenta elas no terminal, logo depois pergunta o que o usuario deseja fazer e entao retorna o valor
         Args:
             opcoes (_type_): são as opções que você quer que tenha no menu
-        Returns:
-           op _type_: retorna pra que aba ele deseja ir
         """
         sleep(0.5)
         print('='*60)
@@ -58,50 +56,110 @@ class Ouvidoria:
         sleep(0.5)
         
 
-    def fazercoment(self,nome,tipo,coment,seus='sua',art='A'):
-        """Função pra adicionar comentário em uma das listas
-
-        Args:
-            nome (self.lista): nome da lista ue vai ser adicionada
-            tipo (str): nome em string pra aparecer legal na interface
-            seus (str, optional): só pra personalização. Defaults to 'sua'.
-            art (str, optional): tbm pra personalização. Defaults to 'A'.
-        """
-        nome.append(coment)
-        Ouvidoria.msgsucesso(self,f'{art} {seus} {tipo} foi resgistrado')
+    def fazercoment(self,input,texto):
+        if input=='1':
+            Ouvidoria.elogios.append(texto)
+            Ouvidoria.msgsucesso(self,'O seu elogio foi resgistrado')
+        elif input=='2':
+            Ouvidoria.criticas.append(texto)
+            Ouvidoria.msgsucesso(self,'A sua critica foi registrada')
+        elif input=='3':
+            Ouvidoria.sugestoes.append(texto)
 
 
-    def vercoment(self,nome,tipo,cor='7',seus='Suas'):
-        """Função pra printar os comentários
-
-        Args:
-            nome (self.lista): lista de onde vai sair os comentários
-            tipo (str): é o nome da lista pra aparecer em testo e sem o self
-            cor (str, optional): cor que o nome da lista vai ser printada_. Defaults to '7'.
-            seus (str, optional): só pra personalização. Defaults to 'Suas'.
-        """
-        id=1
-        print('=' * 60)
-        print(f'{seus} \033[;3{cor}m{tipo}\033[m:')
-        for elog in nome:
-            sleep(0.09)
-            print(f'\033[;33m{id}\033[m: {elog}')
-            id += 1
-
-
-    def apagarcoment(self,nome,tipover,comentario,art='a'):
-        """função pra apagar apenas um comentário da lista
-
-        Args:
-            nome (str): nome da lista
-            tipover (str): nome da lista em strig 
-            cor (str, optional): cor do nome da lista quando printada, vai ser definida depois. Defaults to '7'.
-            seus (str, optional): personalização só. Defaults to 'Suas'.
-            art (str, optional): personalização tbm. Defaults to 'a'.
-        """
-        try:
-            nome.pop(comentario - 1)
-        except:
-            Ouvidoria.msgerro(self,f'Esse {tipover} não existe')
+    def vercoment(self,input):
+        if input=='1':
+            id=1
+            print('=' * 60)
+            print('Seus \033[;32melogios\033[m:')
+            for elog in Ouvidoria.elogios:
+                sleep(0.09)
+                print(f'\033[;36m{id}\033[m: {elog}')
+                id += 1
+        elif input=='2':
+            id=1
+            print('=' * 60)
+            print('Suas \033[;31mcriticas\033[m:')
+            for crit in Ouvidoria.criticas:
+                sleep(0.09)
+                print(f'\033[;36m{id}\033[m: {crit}')
+                id += 1
+        elif input=='3':
+            id=1
+            print('=' * 60)
+            print('Suas \033[;33msugestões\033[m:')
+            for sug in Ouvidoria.sugestoes:
+                sleep(0.09)
+                print(f'\033[;36m{id}\033[m: {sug}')
+                id += 1
+        elif input=='4':
+            id=1
+            print('=' * 60)
+            print('Seus \033[;32melogios\033[m:')
+            for elog in Ouvidoria.elogios:
+                sleep(0.09)
+                print(f'\033[;36m{id}\033[m: {elog}')
+                id += 1
+            id2=1
+            print('=' * 60)
+            print('Suas \033[;31mcriticas\033[m:')
+            for crit in Ouvidoria.criticas:
+                sleep(0.09)
+                print(f'\033[;36m{id2}\033[m: {crit}')
+                id2 += 1
+            id3=1
+            print('=' * 60)
+            print('Suas \033[;33msugestões\033[m:')
+            for sug in Ouvidoria.sugestoes:
+                sleep(0.09)
+                print(f'\033[;36m{id3}\033[m: {sug}')
+                id3 += 1
+        elif input=='5':
+            Ouvidoria.voltando(self)
         else:
-            Ouvidoria.msgsucesso(self,f'{tipover} apagad{art}')
+            Ouvidoria.msgerro(self,'Você não escolheu uma opção valida')
+
+            
+    def apagarcoment(self,input,comentario):
+        if input=='1':
+            try:
+                Ouvidoria.elogios.pop(comentario - 1)
+            except:
+                Ouvidoria.msgerro(self,'Esse elogio não existe')
+            else:
+                Ouvidoria.msgsucesso(self,'Elogio apagado')
+        elif input=='2':
+            try:
+                Ouvidoria.criticas.pop(comentario - 1)
+            except:
+                Ouvidoria.msgerro(self,'Essa critica não existe')
+            else:
+                Ouvidoria.msgsucesso(self,'Critica apagada')
+        elif input=='3':
+            try:
+                Ouvidoria.sugestoes.pop(comentario - 1)
+            except:
+                Ouvidoria.msgerro(self,'Essa sugestão não existe')
+            else:
+                Ouvidoria.msgsucesso(self,'Sugestão apagada')
+
+
+    def apagartudo(self,input):
+        if input=='1':
+            Ouvidoria.elogios.clear()
+            Ouvidoria.msgsucesso(self,'Todos os elogios apagados')
+        elif input=='2':
+            Ouvidoria.criticas.clear()
+            Ouvidoria.msgsucesso(self,'Todas as criticas apagadas')
+        elif input=='3':
+            Ouvidoria.sugestoes.clear()
+            Ouvidoria.msgsucesso(self,'Todas as sugestões apagadas')
+        elif input=='4':
+            Ouvidoria.elogios.clear()
+            Ouvidoria.criticas.clear()
+            Ouvidoria.sugestoes.clear()
+            Ouvidoria.msgsucesso(self,'Todos os comentários apagados')
+        elif input=='5':
+            Ouvidoria.voltando(self)
+        else:
+            Ouvidoria.msgerro(self,'Você não escolheu uma opção valida')
