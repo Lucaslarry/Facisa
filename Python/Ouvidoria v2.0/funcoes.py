@@ -6,14 +6,10 @@ class Ouvidoria:
 
 
     def __init__(self,nome):
-        """Iniciador da classe ouvidoria, ele inicia perguntando seu nome e dando boas vindas, logo após cria as listas que você vai usar para guardar as informações
-        """
         print('\033[1;35m*\033[m' * 5, f'Seja bem vindo a nossa ouvidoria, {nome}', '\033[1;35m*\033[m' * 5)
 
 
     def voltando(self):
-        """printa uma mensagem de voltando como se estivesse carregando
-        """
         print('Voltando', end='',flush=True)
         sleep(0.23)
         for x in range(1,3):
@@ -23,26 +19,16 @@ class Ouvidoria:
 
 
     def msgerro(self,msg):
-        """Printa uma mensagem personalizada de erro
-        """
         sleep(0.2)
         print(f'\033[;31mErro! {msg}.\033[m')
 
 
     def msgsucesso(self,msg):
-        """Printa uma mensagem personalizada de sucesso
-        Args:
-            msg (str): A mensagem que você quiser, lembranco que "com sucesso" já está incluso no final
-        """
         sleep(0.2)
         print(f'\033[;32m{msg} com sucesso.\033[m')
 
 
     def menu(self,opcoes):
-        """Função para os menus da ouvidoria, ele pede como parametro as opções do menu e apresenta elas no terminal, logo depois pergunta o que o usuario deseja fazer e entao retorna o valor
-        Args:
-            opcoes (_type_): são as opções que você quer que tenha no menu
-        """
         sleep(0.5)
         print('='*60)
         id=1
