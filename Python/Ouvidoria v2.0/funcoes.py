@@ -139,7 +139,7 @@ class Ouvidoria:
             Ouvidoria.msgsucesso(self,'Todas as criticas apagadas')
         elif input=='3':
             Ouvidoria.sugestoes.clear()
-            Ouvidoria.msgsucesso(self,'Todas as sugestões apagadas')
+            Ouvidoria.msgsucesso(self, 'Todas as sugestões apagadas')
         elif input=='4':
             Ouvidoria.elogios.clear()
             Ouvidoria.criticas.clear()
