@@ -18,4 +18,45 @@ while True:
     elif menu=='2':
         ouvidoria.menu(['Ver elogios','Ver criticas','Ver Sugestões','Ver tudo','Voltar'])
         menuver=str(input('O que deseja fazer? '))
-        ouvidoria.vercoment(menuver)
+        if menuver=='1' or menuver=='2' or menuver=='3' or menuver=='4':
+            ouvidoria.vercoment(menuver)
+        elif menuver=='5':
+            ouvidoria.voltando()
+        else:
+            ouvidoria.msgerro('Você não escolheu uma opção valida')
+    elif menu=='3':
+        ouvidoria.menu(['Apagar um comentário','Apagar todos os comentários','Voltar'])
+        menuapagar= str(input('O que deseja Fazer? '))
+        if menuapagar=='1':
+            ouvidoria.menu(['Apagar um elogio', 'Apagar uma critica', 'Apagar uma sugestão', 'Voltar pro menu principal'])
+            menuapagar2= str(input('O que deseja fazer? '))
+            if menuapagar2=='1' or menuapagar2=='2' or menuapagar2=='3':
+                ouvidoria.vercoment(menuapagar2)
+                try:
+                    apag=int(input('Qual id do comentário que deseja apagar? '))
+                except:
+                    ouvidoria.msgerro('Você não escolheu uma opção valida')
+                else:
+                    ouvidoria.apagarcoment(menuapagar2,apag)
+            elif menuapagar2=='4':
+                ouvidoria.voltando()
+            else:
+                ouvidoria.msgerro('Você não escolheu uma opção valida')
+        elif menuapagar=='2':
+            ouvidoria.menu(['Apagar todos os elogios','Apagar todas as criticas','Apagar todas as sugestões','Apagar tudo','Voltar pro menu principal'])
+            menuapagar2= str(input('O que deseja fazer? '))
+            if menuapagar2=='1' or menuapagar2=='2' or menuapagar2=='3' or menuapagar2=='4':
+                ouvidoria.apagartudo(menuapagar2)
+            elif menuapagar2=='5':
+                ouvidoria.voltando()
+            else:
+                ouvidoria.msgerro('Você não escolheu uma opção valida')
+        elif menuapagar=='3':
+            ouvidoria.voltando()
+        else:
+            ouvidoria.msgerro('Você não escolheu uma opção valida')
+    elif menu=='4':
+        print('Obrigado pelo feedback')
+        break
+    else:
+        ouvidoria.msgerro('Você não escolheu uma opção valida')

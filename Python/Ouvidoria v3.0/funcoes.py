@@ -52,4 +52,69 @@ class Ouvidoria:
     
 
     def vercoment(self,input):
-        pass
+        if input == '1':
+            comando= 'SELECT * FROM ELOGIOS'
+            database.vercoment(Ouvidoria.conexao,comando,'Seus \033[;32mElogios:\033[m')
+        elif input == '2':
+            comando= 'SELECT * FROM CRITICAS'
+            database.vercoment(Ouvidoria.conexao,comando,'Suas \033[;31mCriticas:\033[m')
+        elif input == '3':
+            comando= 'SELECT * FROM SUGESTÕES'
+            database.vercoment(Ouvidoria.conexao,comando,'Suas \033[;34mSugestões:\033[m')
+        elif input == '4':
+            comando= 'SELECT * FROM ELOGIOS'
+            database.vercoment(Ouvidoria.conexao,comando,'Seus \033[;32mElogios:\033[m')
+            comando= 'SELECT * FROM CRITICAS'
+            database.vercoment(Ouvidoria.conexao,comando,'Suas \033[;31mCriticas:\033[m')
+            comando= 'SELECT * FROM SUGESTÕES'
+            database.vercoment(Ouvidoria.conexao,comando,'Suas \033[;34mSugestões:\033[m')
+        
+
+    def apagarcoment(self,input,comentario):
+        if input == '1':
+            try:
+                comando= 'DELETE FROM ELOGIOS WHERE ID = %s'
+                database.apagarcoment(Ouvidoria.conexao,comando,comentario)
+            except:
+                Ouvidoria.msgerro(self,'Esse elogio não existe')
+            else:
+                Ouvidoria.msgsucesso(self,'Elogio apagado')
+        elif input == '2':
+            try:
+                comando= 'DELETE FROM CRITICAS WHERE ID = %s'
+                database.apagarcoment(Ouvidoria.conexao,comando,comentario)
+            except:
+                Ouvidoria.msgerro(self,'Essa critica não existe')
+            else:
+                Ouvidoria.msgsucesso(self,'Critica apagado')
+        elif input == '3':
+            try:
+                comando= 'DELETE FROM SUGESTÕES WHERE ID = %s'
+                database.apagarcoment(Ouvidoria.conexao,comando,comentario)
+            except:
+                Ouvidoria.msgerro(self,'Essa Sugestão não existe')
+            else:
+                Ouvidoria.msgsucesso(self,'Sugestão apagada')
+    
+
+    def apagartudo(self,input):
+        if input == '1':
+            comando= 'TRUNCATE ELOGIOS'
+            database.apagarcoment(Ouvidoria.conexao,comando)
+            Ouvidoria.msgsucesso(self,'Todos os elogios apagados')
+        elif input == '2':
+            comando= 'TRUNCATE CRITICAS'
+            database.apagarcoment(Ouvidoria.conexao,comando)
+            Ouvidoria.msgsucesso(self,'Todas as criticas apagadas')
+        elif input == '3':
+            comando= 'TRUNCATE SUGESTÕES'
+            database.apagarcoment(Ouvidoria.conexao,comando)
+            Ouvidoria.msgsucesso(self, 'Todas as sugestões apagadas')
+        elif input == '4':
+            comando= 'TRUNCATE ELOGIOS'
+            database.apagarcoment(Ouvidoria.conexao,comando)
+            comando= 'TRUNCATE CRITICAS'
+            database.apagarcoment(Ouvidoria.conexao,comando)
+            comando= 'TRUNCATE SUGESTÕES'
+            database.apagarcoment(Ouvidoria.conexao,comando)
+            Ouvidoria.msgsucesso(self,'Todos os comentários apagados')
