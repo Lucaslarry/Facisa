@@ -2,7 +2,7 @@ from time import sleep
 elogios=[]
 criticas=[]
 sugestoes=[]
-dele=0
+dele= 0
 sair= False
 nome= str(input('Para iniciar a ouvidoria é necessario dizer seu nome: ')).strip().title()
 sleep(0.2)
