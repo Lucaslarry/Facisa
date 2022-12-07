@@ -2,10 +2,11 @@ from time import sleep #Modulo pra adicionar um delay entre as informações
 
 import database #Arquivo da classe com as funções que utiliza o Modulo do MySql
 
+banco_de_dados = database.Database()
+
 class Ouvidoria:
     
-    conexao= database.logar('localhost','root','lucas') #Variavel que se conecta ao banco de dados
-   
+
     def __init__(self,nome):
         """Classe com as funções da Ouvidoria
 
@@ -13,7 +14,25 @@ class Ouvidoria:
             nome (str): Nome do Usuario
         """
         print('\033[1;35m*\033[m' * 5, f'Seja bem vindo a nossa ouvidoria, {nome}', '\033[1;35m*\033[m' * 5)
+
     
+    def logar(self):
+        """função para se conectar o banco de dados
+
+        Returns:
+            _type_: o banco de dados conectado
+        """
+        return banco_de_dados.logar('localhost','root','lucas')
+    
+
+    def deslogar(self):
+        """função para deslogar o banco de dados
+
+        Returns:
+            _type_: o banco de dados desconectado
+        """
+        return banco_de_dados.deslogar(Ouvidoria.logar(self))    
+
 
     def msg_voltando(self):
         """Função com uma mensagem de voltando como os "." como se estivesse carregando
@@ -56,11 +75,11 @@ class Ouvidoria:
         print('='*60)
         id=1
         print('\033[;33mNossas opções são:\033[m')
-        sleep(0.1)
+        sleep(0.15)
         for opcao in opcoes:
             print(f' \033[1;30m{id}\033[m: {opcao}')
             id+=1
-            sleep(0.1)
+            sleep(0.15)
         print('='*60)
         sleep(0.5)
         
@@ -72,20 +91,23 @@ class Ouvidoria:
             input (str): input que vem do arquivo main com a opção escolhida pelo usuario
             novo_comentario (str): Comentário que o usuario deseja adicionar
         """
+        conexao = Ouvidoria.logar(self)
         if input == '1':
             comando = 'INSERT INTO ELOGIOS (elogios) values (%s)'
-            database.fazer_coment(Ouvidoria.conexao,comando,novo_comentario)
+            banco_de_dados.fazer_coment(conexao,comando,novo_comentario)
             Ouvidoria.msg_sucesso(self,'Elogio feito')
         
         elif input == '2':
             comando = 'INSERT INTO CRITICAS (criticas) values (%s)'
-            database.fazer_coment(Ouvidoria.conexao,comando,novo_comentario)
+            banco_de_dados.fazer_coment(conexao,comando,novo_comentario)
             Ouvidoria.msg_sucesso(self,'Critica feita')
         
         elif input == '3':
             comando = 'INSERT INTO SUGESTÕES (sugestões) values (%s)'
-            database.fazer_coment(Ouvidoria.conexao,comando,novo_comentario)
+            banco_de_dados.fazer_coment(conexao,comando,novo_comentario)
             Ouvidoria.msg_sucesso(self,'Sugestão feita')
+        
+        Ouvidoria.deslogar(self)
     
 
     def ver_coment(self,input):
@@ -94,25 +116,28 @@ class Ouvidoria:
         Args:
             input (str): input que vem do arquivo main com a opção escolhida pelo usuario
         """
+        conexao = Ouvidoria.logar(self)
         if input == '1':
             comando= 'SELECT * FROM ELOGIOS'
-            database.ver_coment(Ouvidoria.conexao,comando,'Seus \033[;32mElogios:\033[m')
+            banco_de_dados.ver_coment(conexao,comando,'Seus \033[;32mElogios:\033[m')
         
         elif input == '2':
             comando= 'SELECT * FROM CRITICAS'
-            database.ver_coment(Ouvidoria.conexao,comando,'Suas \033[;31mCriticas:\033[m')
+            banco_de_dados.ver_coment(conexao,comando,'Suas \033[;31mCriticas:\033[m')
         
         elif input == '3':
             comando= 'SELECT * FROM SUGESTÕES'
-            database.ver_coment(Ouvidoria.conexao,comando,'Suas \033[;34mSugestões:\033[m')
+            banco_de_dados.ver_coment(conexao,comando,'Suas \033[;34mSugestões:\033[m')
         
         elif input == '4':
             comando= 'SELECT * FROM ELOGIOS'
-            database.ver_coment(Ouvidoria.conexao,comando,'Seus \033[;32mElogios:\033[m')
+            banco_de_dados.ver_coment(conexao,comando,'Seus \033[;32mElogios:\033[m')
             comando= 'SELECT * FROM CRITICAS'
-            database.ver_coment(Ouvidoria.conexao,comando,'Suas \033[;31mCriticas:\033[m')
+            banco_de_dados.ver_coment(conexao,comando,'Suas \033[;31mCriticas:\033[m')
             comando= 'SELECT * FROM SUGESTÕES'
-            database.ver_coment(Ouvidoria.conexao,comando,'Suas \033[;34mSugestões:\033[m')
+            banco_de_dados.ver_coment(conexao,comando,'Suas \033[;34mSugestões:\033[m')
+        
+        Ouvidoria.deslogar(self)
         
 
     def apagar_coment(self,input,id_comentario):
@@ -122,10 +147,11 @@ class Ouvidoria:
             input (str): input que vem do arquivo main com a opção escolhida pelo usuario
             comentario (int): id do comentário que o usuario deseja apagar
         """
+        conexao = Ouvidoria.logar(self)
         if input == '1':
             try:
                 comando= 'DELETE FROM ELOGIOS WHERE ID = %s'
-                database.apagar_coment(Ouvidoria.conexao,comando,id_comentario)
+                banco_de_dados.apagar_coment(conexao,comando,id_comentario)
             except:
                 Ouvidoria.msg_erro(self,'Esse elogio não existe')
             else:
@@ -134,7 +160,7 @@ class Ouvidoria:
         elif input == '2':
             try:
                 comando= 'DELETE FROM CRITICAS WHERE ID = %s'
-                database.apagar_coment(Ouvidoria.conexao,comando,id_comentario)
+                banco_de_dados.apagar_coment(conexao,comando,id_comentario)
             except:
                 Ouvidoria.msg_erro(self,'Essa critica não existe')
             else:
@@ -143,11 +169,13 @@ class Ouvidoria:
         elif input == '3':
             try:
                 comando= 'DELETE FROM SUGESTÕES WHERE ID = %s'
-                database.apagar_coment(Ouvidoria.conexao,comando,id_comentario)
+                banco_de_dados.apagar_coment(conexao,comando,id_comentario)
             except:
                 Ouvidoria.msg_erro(self,'Essa Sugestão não existe')
             else:
                 Ouvidoria.msg_sucesso(self,'Sugestão apagada')
+        
+        Ouvidoria.deslogar(self)
     
 
     def apagar_tudo(self,input):
@@ -156,29 +184,32 @@ class Ouvidoria:
         Args:
             input (str): input que vem do arquivo main com a opção escolhida pelo usuario
         """
+        conexao = Ouvidoria.logar(self)
         if input == '1':
             comando= 'TRUNCATE ELOGIOS'
-            database.apagar_coment(Ouvidoria.conexao,comando,'all')
+            banco_de_dados.apagar_coment(conexao,comando,'all')
             Ouvidoria.msg_sucesso(self,'Todos os elogios apagados')
         
         elif input == '2':
             comando= 'TRUNCATE CRITICAS'
-            database.apagar_coment(Ouvidoria.conexao,comando,'all')
+            banco_de_dados.apagar_coment(conexao,comando,'all')
             Ouvidoria.msg_sucesso(self,'Todas as criticas apagadas')
         
         elif input == '3':
             comando= 'TRUNCATE SUGESTÕES'
-            database.apagar_coment(Ouvidoria.conexao,comando,'all')
+            banco_de_dados.apagar_coment(conexao,comando,'all')
             Ouvidoria.msg_sucesso(self, 'Todas as sugestões apagadas')
         
         elif input == '4':
             comando= 'TRUNCATE ELOGIOS'
-            database.apagar_coment(Ouvidoria.conexao,comando,'all')
+            banco_de_dados.apagar_coment(conexao,comando,'all')
             comando= 'TRUNCATE CRITICAS'
-            database.apagar_coment(Ouvidoria.conexao,comando,'all')
+            banco_de_dados.apagar_coment(conexao,comando,'all')
             comando= 'TRUNCATE SUGESTÕES'
-            database.apagar_coment(Ouvidoria.conexao,comando,'all')
+            banco_de_dados.apagar_coment(conexao,comando,'all')
             Ouvidoria.msg_sucesso(self,'Todos os comentários apagados')
+        
+        Ouvidoria.deslogar(self)
     
 
     def atualizar_coment(self,input,idcoment,novocoment):
@@ -189,16 +220,18 @@ class Ouvidoria:
             idcoment (int): id da linha do comentário que o usuario deseja atualizar
             novocoment (str): Novo comentário que será posto
         """
+        conexao = Ouvidoria.logar(self)
         if input=='1':
             comando= 'UPDATE ELOGIOS SET elogios = %s WHERE id = %s'
-            database.atualizar_coment(Ouvidoria.conexao,comando,idcoment,novocoment)
+            banco_de_dados.atualizar_coment(conexao,comando,idcoment,novocoment)
         
         elif input=='2':
             comando= 'UPDATE CRITICAS SET criticas = %s WHERE id = %s'
-            database.atualizar_coment(Ouvidoria.conexao,comando,idcoment,novocoment)
+            banco_de_dados.atualizar_coment(conexao,comando,idcoment,novocoment)
         
         elif input=='3':
             comando= 'UPDATE SUGESTÕES SET sugestões = %s WHERE id = %s'
-            database.atualizar_coment(Ouvidoria.conexao,comando,idcoment,novocoment)
+            banco_de_dados.atualizar_coment(conexao,comando,idcoment,novocoment)
        
         Ouvidoria.msg_sucesso(self,'Comentário Atualizado')
+        Ouvidoria.deslogar(self)
