@@ -1,4 +1,7 @@
+from time import sleep #Modulo pra adicionar um delay entre as informações
+
 import mysql.connector
+
 def logar(host,usuario,senha):
     """Função para logar no banco de dados
 
@@ -27,7 +30,7 @@ def fazer_coment(conexao,comando,comentario):
         comentario (str): Comentario que será adicionado a tabela
     """
     cursor = conexao.cursor()
-    cursor.execute(comando,comentario)
+    cursor.execute(comando,[comentario])
     conexao.commit()
     cursor.close()
 
@@ -47,6 +50,7 @@ def ver_coment(conexao,comando,tipo='Seus comentários:'):
     print('='*60)
     print(tipo)
     for comentario in comentarios:
+        sleep(0.3)
         print(f'\033[;33m{comentario[0]}:\033[m {comentario[1]}')
 
 

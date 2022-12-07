@@ -20,8 +20,9 @@ class Ouvidoria:
         """
         print('Voltando', end='',flush=True)
         for x in range(1,4):
-            sleep(0.3)
+            sleep(0.2)
             print('.', end='',flush=True)
+        print()
  
     
 
@@ -73,15 +74,18 @@ class Ouvidoria:
         """
         if input == '1':
             comando = 'INSERT INTO ELOGIOS (elogios) values (%s)'
-            database.fazer_coment(Ouvidoria.conexao,comando,[novo_comentario])
+            database.fazer_coment(Ouvidoria.conexao,comando,novo_comentario)
+            Ouvidoria.msg_sucesso(self,'Elogio feito')
         
         elif input == '2':
             comando = 'INSERT INTO CRITICAS (criticas) values (%s)'
-            database.fazer_coment(Ouvidoria.conexao,comando,[novo_comentario])
+            database.fazer_coment(Ouvidoria.conexao,comando,novo_comentario)
+            Ouvidoria.msg_sucesso(self,'Critica feita')
         
         elif input == '3':
             comando = 'INSERT INTO SUGESTÕES (sugestões) values (%s)'
-            database.fazer_coment(Ouvidoria.conexao,comando,[novo_comentario])
+            database.fazer_coment(Ouvidoria.conexao,comando,novo_comentario)
+            Ouvidoria.msg_sucesso(self,'Sugestão feita')
     
 
     def ver_coment(self,input):
@@ -197,4 +201,4 @@ class Ouvidoria:
             comando= 'UPDATE SUGESTÕES SET sugestões = %s WHERE id = %s'
             database.atualizar_coment(Ouvidoria.conexao,comando,idcoment,novocoment)
        
-        Ouvidoria.msg_sucesso('Comentário Atualizado')
+        Ouvidoria.msg_sucesso(self,'Comentário Atualizado')
