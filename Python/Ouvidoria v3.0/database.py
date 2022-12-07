@@ -67,3 +67,18 @@ def apagar_coment(conexao,comando,comentario):
         cursor.execute(comando,[comentario])
     conexao.commit()
     cursor.close()
+
+
+def atualizar_coment(conexao,comando,id_comentario,novocomentario):
+    """Função para atualizar uma linha da tabela
+    Args:
+        conexao (_type_): variavel que está logado o banco de dados
+        comando (str): Comando (de atualizar liha na tabela) que será usado no mysql
+        id_comentario (int): id da linha do comentário que o usuario deseja atualizar
+        novocomentario (str): Novo comentário que será posto
+    """
+    cursor = conexao.cursor()
+    data= (novocomentario,id_comentario)
+    cursor.execute(comando,data)
+    conexao.commit()
+    cursor.close()

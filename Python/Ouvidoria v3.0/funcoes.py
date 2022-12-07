@@ -64,24 +64,24 @@ class Ouvidoria:
         sleep(0.5)
         
     
-    def fazer_coment(self,input,texto):
+    def fazer_coment(self,input,novo_comentario):
         """Função para adicionar comentários e passar para o banco de dados
 
         Args:
             input (str): input que vem do arquivo main com a opção escolhida pelo usuario
-            texto (str): Comentário que o usuario deseja adicionar
+            novo_comentario (str): Comentário que o usuario deseja adicionar
         """
         if input == '1':
             comando = 'INSERT INTO ELOGIOS (elogios) values (%s)'
-            database.fazer_coment(Ouvidoria.conexao,comando,[texto])
+            database.fazer_coment(Ouvidoria.conexao,comando,[novo_comentario])
         
         elif input == '2':
             comando = 'INSERT INTO CRITICAS (criticas) values (%s)'
-            database.fazer_coment(Ouvidoria.conexao,comando,[texto])
+            database.fazer_coment(Ouvidoria.conexao,comando,[novo_comentario])
         
         elif input == '3':
             comando = 'INSERT INTO SUGESTÕES (sugestões) values (%s)'
-            database.fazer_coment(Ouvidoria.conexao,comando,[texto])
+            database.fazer_coment(Ouvidoria.conexao,comando,[novo_comentario])
     
 
     def ver_coment(self,input):
@@ -111,7 +111,7 @@ class Ouvidoria:
             database.ver_coment(Ouvidoria.conexao,comando,'Suas \033[;34mSugestões:\033[m')
         
 
-    def apagar_coment(self,input,comentario):
+    def apagar_coment(self,input,id_comentario):
         """Função para apagar um comentário comentário e 
 
         Args:
@@ -121,7 +121,7 @@ class Ouvidoria:
         if input == '1':
             try:
                 comando= 'DELETE FROM ELOGIOS WHERE ID = %s'
-                database.apagar_coment(Ouvidoria.conexao,comando,comentario)
+                database.apagar_coment(Ouvidoria.conexao,comando,id_comentario)
             except:
                 Ouvidoria.msg_erro(self,'Esse elogio não existe')
             else:
@@ -130,7 +130,7 @@ class Ouvidoria:
         elif input == '2':
             try:
                 comando= 'DELETE FROM CRITICAS WHERE ID = %s'
-                database.apagar_coment(Ouvidoria.conexao,comando,comentario)
+                database.apagar_coment(Ouvidoria.conexao,comando,id_comentario)
             except:
                 Ouvidoria.msg_erro(self,'Essa critica não existe')
             else:
@@ -139,7 +139,7 @@ class Ouvidoria:
         elif input == '3':
             try:
                 comando= 'DELETE FROM SUGESTÕES WHERE ID = %s'
-                database.apagar_coment(Ouvidoria.conexao,comando,comentario)
+                database.apagar_coment(Ouvidoria.conexao,comando,id_comentario)
             except:
                 Ouvidoria.msg_erro(self,'Essa Sugestão não existe')
             else:
@@ -175,3 +175,26 @@ class Ouvidoria:
             comando= 'TRUNCATE SUGESTÕES'
             database.apagar_coment(Ouvidoria.conexao,comando,'all')
             Ouvidoria.msg_sucesso(self,'Todos os comentários apagados')
+    
+
+    def atualizar_coment(self,input,idcoment,novocoment):
+        """Função para atualizar uma linha da tabela
+
+        Args:
+            input (str): input que vem do arquivo main com a opção escolhida pelo usuario
+            idcoment (int): id da linha do comentário que o usuario deseja atualizar
+            novocoment (str): Novo comentário que será posto
+        """
+        if input=='1':
+            comando= 'UPDATE ELOGIOS SET elogios = %s WHERE id = %s'
+            database.atualizar_coment(Ouvidoria.conexao,comando,idcoment,novocoment)
+        
+        elif input=='2':
+            comando= 'UPDATE CRITICAS SET criticas = %s WHERE id = %s'
+            database.atualizar_coment(Ouvidoria.conexao,comando,idcoment,novocoment)
+        
+        elif input=='3':
+            comando= 'UPDATE SUGESTÕES SET sugestões = %s WHERE id = %s'
+            database.atualizar_coment(Ouvidoria.conexao,comando,idcoment,novocoment)
+       
+        Ouvidoria.msg_sucesso('Comentário Atualizado')

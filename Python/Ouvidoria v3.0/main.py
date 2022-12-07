@@ -8,7 +8,7 @@ ouvidoria= funcoes.Ouvidoria(nome)
 
 while continuar:
     
-    ouvidoria.menu(['Cadastrar Comentários','Ver Comentários','Apagar Comentários','Sair'])
+    ouvidoria.menu(['Cadastrar Comentários','Ver Comentários','Apagar Comentários','Atualizar Comentários','Sair'])
     menu_principal= str(input('O que deseja fazer? ')).strip()
     
 
@@ -25,7 +25,7 @@ while continuar:
     
 
     elif menu_principal=='2':
-        ouvidoria.menu(['Ver elogios','Ver criticas','Ver Sugestões','Ver tudo','Voltar'])
+        ouvidoria.menu(['Ver Elogios','Ver Criticas','Ver Sugestões','Ver tudo','Voltar'])
         menu_ver_coment=str(input('O que deseja fazer? ')).strip()
         if menu_ver_coment=='1' or menu_ver_coment=='2' or menu_ver_coment=='3' or menu_ver_coment=='4':
             ouvidoria.ver_coment(menu_ver_coment)
@@ -39,7 +39,7 @@ while continuar:
         ouvidoria.menu(['Apagar um comentário','Apagar todos os comentários','Voltar'])
         menu_apagar_principal= str(input('O que deseja Fazer? ')).strip()
         if menu_apagar_principal=='1':
-            ouvidoria.menu(['Apagar um elogio', 'Apagar uma critica', 'Apagar uma sugestão',\
+            ouvidoria.menu(['Apagar um Elogio', 'Apagar uma Critica', 'Apagar uma Sugestão',\
                  'Voltar pro menu principal'])
             menu_apagar_coment= str(input('O que deseja fazer? ')).strip()
             if menu_apagar_coment=='1' or menu_apagar_coment=='2' or menu_apagar_coment=='3':
@@ -55,7 +55,7 @@ while continuar:
             else:
                 ouvidoria.msg_erro('Você não escolheu uma opção valida')
         elif menu_apagar_principal=='2':
-            ouvidoria.menu(['Apagar todos os elogios','Apagar todas as criticas','Apagar todas as sugestões',\
+            ouvidoria.menu(['Apagar todos os Elogios','Apagar todas as Criticas','Apagar todas as Sugestões',\
                 'Apagar tudo','Voltar pro menu principal'])
             menu_apagar_todos= str(input('O que deseja fazer? ')).strip()
             if menu_apagar_todos=='1' or menu_apagar_todos=='2' or menu_apagar_todos=='3' or menu_apagar_todos=='4':
@@ -69,8 +69,25 @@ while continuar:
         else:
             ouvidoria.msg_erro('Você não escolheu uma opção valida')
     
-    
     elif menu_principal=='4':
+        ouvidoria.menu(['Atualizar Elogios','Atualizar Criticas','Atualizar Sugestões','Voltar'])
+        menu_atualizar= str(input('O que deseja fazer? '))
+        if menu_atualizar=='1' or menu_atualizar=='2' or menu_atualizar=='3':
+            ouvidoria.ver_coment(menu_atualizar)
+            try:
+                atualizar_coment= int(input('Qual ID do comentário que deseja atualizar? '))
+                novo_comentario= str(input('Digite seu novo comentário: '))
+            except:
+                ouvidoria.msg_erro('Você não escolheu uma opção valida')
+            else:
+                ouvidoria.atualizar_coment(menu_atualizar, atualizar_coment, novo_comentario)
+        elif menu_atualizar=='4':
+            ouvidoria.msg_voltando()
+        else:
+            ouvidoria.msg_erro('Você não escolheu uma opção valida')
+            
+
+    elif menu_principal=='5':
         print('Obrigado pelo feedback')
         continuar=False
     
