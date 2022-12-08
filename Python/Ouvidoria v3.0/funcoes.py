@@ -93,18 +93,15 @@ class Ouvidoria:
         """
         conexao = Ouvidoria.logar(self)
         if input == '1':
-            comando = 'INSERT INTO ELOGIOS (elogios) values (%s)'
-            banco_de_dados.fazer_coment(conexao,comando,novo_comentario)
+            banco_de_dados.fazer_coment(conexao,'elogio',novo_comentario)
             Ouvidoria.msg_sucesso(self,'Elogio feito')
         
         elif input == '2':
-            comando = 'INSERT INTO CRITICAS (criticas) values (%s)'
-            banco_de_dados.fazer_coment(conexao,comando,novo_comentario)
+            banco_de_dados.fazer_coment(conexao,'critica',novo_comentario)
             Ouvidoria.msg_sucesso(self,'Critica feita')
         
         elif input == '3':
-            comando = 'INSERT INTO SUGESTÕES (sugestões) values (%s)'
-            banco_de_dados.fazer_coment(conexao,comando,novo_comentario)
+            banco_de_dados.fazer_coment(conexao,'sugestão',novo_comentario)
             Ouvidoria.msg_sucesso(self,'Sugestão feita')
         
         Ouvidoria.deslogar(self)
@@ -118,30 +115,24 @@ class Ouvidoria:
         """
         conexao = Ouvidoria.logar(self)
         if input == '1':
-            comando= 'SELECT * FROM ELOGIOS'
-            banco_de_dados.ver_coment(conexao,comando,'Seus \033[;32mElogios:\033[m')
+            banco_de_dados.ver_coment(conexao,'elogio','Seus \033[;32mElogios:\033[m')
         
         elif input == '2':
-            comando= 'SELECT * FROM CRITICAS'
-            banco_de_dados.ver_coment(conexao,comando,'Suas \033[;31mCriticas:\033[m')
+            banco_de_dados.ver_coment(conexao,'critica','Suas \033[;31mCriticas:\033[m')
         
         elif input == '3':
-            comando= 'SELECT * FROM SUGESTÕES'
-            banco_de_dados.ver_coment(conexao,comando,'Suas \033[;34mSugestões:\033[m')
+            banco_de_dados.ver_coment(conexao,'sugestão','Suas \033[;34mSugestões:\033[m')
         
         elif input == '4':
-            comando= 'SELECT * FROM ELOGIOS'
-            banco_de_dados.ver_coment(conexao,comando,'Seus \033[;32mElogios:\033[m')
-            comando= 'SELECT * FROM CRITICAS'
-            banco_de_dados.ver_coment(conexao,comando,'Suas \033[;31mCriticas:\033[m')
-            comando= 'SELECT * FROM SUGESTÕES'
-            banco_de_dados.ver_coment(conexao,comando,'Suas \033[;34mSugestões:\033[m')
+            banco_de_dados.ver_coment(conexao,'elogio','Seus \033[;32mElogios:\033[m')
+            banco_de_dados.ver_coment(conexao,'critica','Suas \033[;31mCriticas:\033[m')
+            banco_de_dados.ver_coment(conexao,'sugestão','Suas \033[;34mSugestões:\033[m')
         
         Ouvidoria.deslogar(self)
         
 
     def apagar_coment(self,input,id_comentario):
-        """Função para apagar um comentário comentário e 
+        """Função para apagar um comentário comentário
 
         Args:
             input (str): input que vem do arquivo main com a opção escolhida pelo usuario
@@ -150,8 +141,7 @@ class Ouvidoria:
         conexao = Ouvidoria.logar(self)
         if input == '1':
             try:
-                comando= 'DELETE FROM ELOGIOS WHERE ID = %s'
-                banco_de_dados.apagar_coment(conexao,comando,id_comentario)
+                banco_de_dados.apagar_coment(conexao,'elogio',id_comentario)
             except:
                 Ouvidoria.msg_erro(self,'Esse elogio não existe')
             else:
@@ -159,8 +149,7 @@ class Ouvidoria:
         
         elif input == '2':
             try:
-                comando= 'DELETE FROM CRITICAS WHERE ID = %s'
-                banco_de_dados.apagar_coment(conexao,comando,id_comentario)
+                banco_de_dados.apagar_coment(conexao,'critica',id_comentario)
             except:
                 Ouvidoria.msg_erro(self,'Essa critica não existe')
             else:
@@ -168,8 +157,7 @@ class Ouvidoria:
         
         elif input == '3':
             try:
-                comando= 'DELETE FROM SUGESTÕES WHERE ID = %s'
-                banco_de_dados.apagar_coment(conexao,comando,id_comentario)
+                banco_de_dados.apagar_coment(conexao,'sugestão',id_comentario)
             except:
                 Ouvidoria.msg_erro(self,'Essa Sugestão não existe')
             else:
@@ -186,27 +174,21 @@ class Ouvidoria:
         """
         conexao = Ouvidoria.logar(self)
         if input == '1':
-            comando= 'TRUNCATE ELOGIOS'
-            banco_de_dados.apagar_coment(conexao,comando,'all')
+            banco_de_dados.apagar_todos_coment(conexao,'elogio')
             Ouvidoria.msg_sucesso(self,'Todos os elogios apagados')
         
         elif input == '2':
-            comando= 'TRUNCATE CRITICAS'
-            banco_de_dados.apagar_coment(conexao,comando,'all')
+            banco_de_dados.apagar_todos_coment(conexao,'critica')
             Ouvidoria.msg_sucesso(self,'Todas as criticas apagadas')
         
         elif input == '3':
-            comando= 'TRUNCATE SUGESTÕES'
-            banco_de_dados.apagar_coment(conexao,comando,'all')
+            banco_de_dados.apagar_todos_coment(conexao,'sugestão')
             Ouvidoria.msg_sucesso(self, 'Todas as sugestões apagadas')
         
         elif input == '4':
-            comando= 'TRUNCATE ELOGIOS'
-            banco_de_dados.apagar_coment(conexao,comando,'all')
-            comando= 'TRUNCATE CRITICAS'
-            banco_de_dados.apagar_coment(conexao,comando,'all')
-            comando= 'TRUNCATE SUGESTÕES'
-            banco_de_dados.apagar_coment(conexao,comando,'all')
+            banco_de_dados.apagar_todos_coment(conexao,'elogio')
+            banco_de_dados.apagar_todos_coment(conexao,'critica')
+            banco_de_dados.apagar_todos_coment(conexao,'sugestão')
             Ouvidoria.msg_sucesso(self,'Todos os comentários apagados')
         
         Ouvidoria.deslogar(self)
@@ -222,16 +204,13 @@ class Ouvidoria:
         """
         conexao = Ouvidoria.logar(self)
         if input=='1':
-            comando= 'UPDATE ELOGIOS SET elogios = %s WHERE id = %s'
-            banco_de_dados.atualizar_coment(conexao,comando,idcoment,novocoment)
+            banco_de_dados.atualizar_coment(conexao,'elogio',idcoment,novocoment)
         
         elif input=='2':
-            comando= 'UPDATE CRITICAS SET criticas = %s WHERE id = %s'
-            banco_de_dados.atualizar_coment(conexao,comando,idcoment,novocoment)
+            banco_de_dados.atualizar_coment(conexao,'critica',idcoment,novocoment)
         
         elif input=='3':
-            comando= 'UPDATE SUGESTÕES SET sugestões = %s WHERE id = %s'
-            banco_de_dados.atualizar_coment(conexao,comando,idcoment,novocoment)
+            banco_de_dados.atualizar_coment(conexao,'sugestão',idcoment,novocoment)
        
         Ouvidoria.msg_sucesso(self,'Comentário Atualizado')
         Ouvidoria.deslogar(self)

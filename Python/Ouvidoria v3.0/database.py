@@ -38,70 +38,88 @@ class Database:
         return conexao.close()
 
 
-    def fazer_coment(self,conexao,comando,comentario):
+    def fazer_coment(self,conexao,tipo,comentario):
         """Função para adicionar um comentário no banco de dados
 
         Args:
             conexao : variavel que está logado o banco de dados
-            comando (str): Comando (de adicioar em uma tabela) que será usado no mysql
+            tipo (str): Tipo do comentário
             comentario (str): Comentario que será adicionado a tabela
         """
+        comando= 'INSERT INTO COMENTARIO (comentario,tipo) values (%s,%s)'
+        data=(comentario,tipo)
         cursor = conexao.cursor()
-        cursor.execute(comando,[comentario])
+        cursor.execute(comando,data)
         conexao.commit()
         cursor.close()
 
 
-    def ver_coment(self,conexao,comando,tipo='Seus comentários:'):
+    def ver_coment(self,conexao,tipo,frase='Seus comentários:'):
         """Função para Listar os comenntários feitos em determinada tabela
 
         Args:
             conexao (_type_): variavel que está logado o banco de dados
-            comando (str): Comando (de listar a tabela) que será usado o mysql
-            tipo (str, optional): Só personalização do print que aparece antes de listar os comentários. Defaults to 'Seus comentários:'.
+            tipo (str): Tipo do comentário
+            frase (str, optional): Só personalização do print que aparece antes de listar os comentários. Defaults to 'Seus comentários:'.
         """
+        comando= 'SELECT * FROM COMENTARIO WHERE tipo = %s'
+        data=(tipo)
         cursor = conexao.cursor()
-        cursor.execute(comando)
+        cursor.execute(comando,[data])
         comentarios= cursor.fetchall()
         cursor.close()
         print('='*60)
         sleep(0.15)
-        print(tipo)
+        print(frase)
         sleep(0.15)
         for comentario in comentarios:
             print(f'\033[;33m{comentario[0]}:\033[m {comentario[1]}')
             sleep(0.15)
 
 
-    def apagar_coment(self,conexao,comando,comentario):
+    def apagar_coment(self,conexao,tipo,id_coment):
         """Função para apagar algum comentário feito em determinada tabela
 
         Args:
             conexao (_type_): variavel que está logado o banco de dados
-            comando (str): Comando (de apagar liha na tabela) que será usado no mysql
-            comentario (str, optional): O id do comentário que se deseja apagar, caso queria apagar todas as linhas da tabela, definir esse parâmetro como "all". Defaults to ''.
+            tipo (str): Tipo do comentário
+            id_coment (int): O id do comentário que se deseja apagar
         """
+        comando= 'DELETE FROM COMENTARIO WHERE id = %s AND tipo = %s'
+        data=(id_coment,tipo)
         cursor= conexao.cursor()
-        
-        if comentario=='all':
-            cursor.execute(comando)
-        
-        else:
-            cursor.execute(comando,[comentario])
+        cursor.execute(comando,data)
         conexao.commit()
         cursor.close()
 
 
-    def atualizar_coment(self,conexao,comando,id_comentario,novocomentario):
-        """Função para atualizar uma linha da tabela
+    def apagar_todos_coment(self,conexao,tipo):
+        """Função para apagar todas as linhas de determinnado tipo
+
         Args:
-            conexao (_type_): variavel que está logado o banco de dados
-            comando (str): Comando (de atualizar liha na tabela) que será usado no mysql
-            id_comentario (int): id da linha do comentário que o usuario deseja atualizar
-            novocomentario (str): Novo comentário que será posto
+            conexao (_type_): Variavel que está logada a conexão com o mysql
+            tipo (str): Tipo do comentário
         """
+        comando = 'DELETE FROM COMENTARIO WHERE tipo = %s'
+        data=(tipo)
+        cursor=conexao.cursor()
+        cursor.execute(comando,[data])
+        conexao.commit()
+        cursor.close()
+
+
+    def atualizar_coment(self,conexao,tipo,id_comentario,novocomentario):
+        """Função pra atualizar uma linha da tabea
+
+        Args:
+            conexao (_type_): Variavel que está logada a conexão com o mysql
+            tipo (str): Tipo do comentárip
+            id_comentario (int): Id do comentário que deseja atualizar
+            novocomentario (str): Novo comentário que substituirá o antigo
+        """
+        comando= 'UPDATE COMENTARIO SET comentario= %s WHERE id = %s AND tipo = %s'
+        data=(novocomentario,id_comentario,tipo)
         cursor = conexao.cursor()
-        data= (novocomentario,id_comentario)
         cursor.execute(comando,data)
         conexao.commit()
         cursor.close()
