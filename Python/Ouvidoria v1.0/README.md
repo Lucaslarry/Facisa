@@ -1,6 +1,6 @@
 # Sobre o projeto
 
-A Fase 1 Ouvidoria é um programa em python utilizando as funções basicas da linguaguem (list, for, while, if/elif/else).
+A Fase 1 da Ouvidoria é um programa em python utilizando as funções basicas da linguaguem (list, for, while, if/elif/else).
 
 construido durante o primeiro módulo da universidade unifacisa.
 

@@ -1,6 +1,6 @@
 # Sobre o projeto
 
-A Fase 3 Ouvidoria é uma atualização da segunnda fase agora utilizando conexão com o banco de dados (SGBD) MySQL e usando as funções básicas de CRUD.
+A Fase 3 da Ouvidoria é uma atualização da segunda fase agora utilizando conexão com o banco de dados (SGBD) MySQL e usando as funções básicas de CRUD.
 
 construido durante o primeiro módulo da universidade unifacisa.
 

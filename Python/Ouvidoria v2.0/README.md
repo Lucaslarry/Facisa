@@ -1,6 +1,6 @@
 # Sobre o projeto
 
-A Fase 2 Ouvidoria é uma atualização da primeira fase agora utilizando estruturas mais avançadas de python (métodos e classes).
+A Fase 2 da Ouvidoria é uma atualização da primeira fase agora utilizando estruturas mais avançadas de python (métodos e classes).
 
 construido durante o primeiro módulo da universidade unifacisa.
 
