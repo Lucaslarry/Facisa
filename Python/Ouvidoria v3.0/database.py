@@ -1,7 +1,7 @@
 from time import sleep #Modulo pra adicionar um delay entre as informações
 
 import mysql.connector
-class Database:
+class DataBase:
 
     def __init__(self):
         pass
