@@ -31,7 +31,7 @@ construido durante o primeiro módulo da universidade unifacisa.
 Pré-requisitos: Python 3.9
 ```bash
 # clonar repositório
-git clone https://github.com/Lucaslarry/Facisa/tree/main/Python/Ouvidoria%20v2.0
+$ git clone https://github.com/Lucaslarry/Facisa/tree/main/Python/Ouvidoria%20v2.0
 ```
 Depois é só rodar o arquivo main.py com:
 ```bash
