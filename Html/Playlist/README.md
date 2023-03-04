@@ -4,7 +4,7 @@ Projeto construido como primeiro desafio da cadeira de Front-End da universidade
 
 O objetivo desse projeto é construir um site para colocar suas musicas favoritas.
 
-<img src="imagens\Site_Playlist.png">
+<img src="imagens/Site_Playlist.png" align="center"> 
 
 
 # Tecnologias utilizadas
