@@ -8,7 +8,6 @@ O objetivo desse projeto é construir um site onde você possa depositar e tocar
 
 <img src="imagem\Site_Playlist.png">
 
-
 <br>
 
 # Tecnologias utilizadas
