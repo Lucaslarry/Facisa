@@ -1,8 +1,8 @@
 # Projetos da UniFacisa
 
 Repositório com os projetos da universidade. 
-<img src="imagens/imagempython.png" align="right" width="200">
 
 Projetos:
 
 * [Projetos em Python](https://github.com/Lucaslarry/Facisa/tree/main/Python)
+* [Projetos Front-End](https://github.com/lucaslarry/Facisa/tree/main/FrontEnd)
