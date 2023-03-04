@@ -14,4 +14,3 @@ O objetivo desse projeto é construir um site onde você possa depositar e tocar
 # Tecnologias utilizadas
 - HTML5
 - CSS3
-
