@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esqueci a senha</title>
+    <link rel="stylesheet" href="/assets/css/mudar_senha.css">
+    <script src="/js/main.js" async></script>
+</head>
+
+<body>
+    <button id="voltar_esquecer" class="voltar">Voltar</button>
+    <main>
+
+        <header>
+            <img id="logo" src="/assets/midia/logo.png" alt="logo">
+            <div id="titulo">
+                <h1>Esqueceu sua senha?</h1>
+            </div>
+        </header>
+
+        <div id="div_forms">
+            <p id="texto_mudar_senha">Digite seu email:</p>
+            <div id="div_esquecer_senha">
+                <input type="email" placeholder="Email" id="email_esqueci_senha" required>
+                <input type="text" placeholder="Nova Senha" id="senha_esqueci_senha" required>
+            </div>
+            <div id="botao_voltar">
+                <button type="submit" form="email_esqueci_senha" class="botao_esquecer"
+                    id="esquecer_senha">Enviar</button>
+                <button type="submit" form="senha_esqueci_senha" class="botao_esquecer"
+                    id="esquecer_senha2">Enviar</button>
+            </div>
+        </div>
+
+    </main>
+
+</body>
+
+
+</html>

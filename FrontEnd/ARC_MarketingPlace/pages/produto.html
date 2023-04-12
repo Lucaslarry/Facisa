@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produtos</title>
+  <link rel="stylesheet" href="/assets/css/produto.css">
+  <script src="/js/produtos.js" async></script>
+</head>
+
+<body>
+  <button id="voltar_produto">voltar</button>
+  <header id="topBox">
+    <h1 id="titulo">Escolha seu produto!</h1>
+  </header>
+  <h1 class="titulo_sessao">Processador</h1>
+  <div id="produto_cima">
+
+    <div class="produto">
+      <p class="nome_produto">Ryzen 5 - 5600</p>
+      <img class="imagem_produto" alt="Imagem do Produto"
+        src="https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/1/0/100-100000927box_1.jpg">
+      <div class="descricao_produto">
+        <h3 class="preco_produto">R$ 1500.90</h3>
+        <button id="ryzen5" class="adicionar_carrinho">Adicionar ao Carrinho</button>
+      </div>
+    </div>
+    <div class="produto">
+      <p class="nome_produto">i5 - 10400f</p>
+      <img class="imagem_produto" alt="Imagem do Produto"
+        src="https://images.kabum.com.br/produtos/fotos/112991/processador-intel-core-i5-10400f-cache-12mb-2-9ghz-lga-1200-bx8070110400f_1589199927_g.jpg">
+      <div class="descricao_produto">
+        <h3 class="preco_produto">R$ 1900.25</h3>
+        <button id="i5" class="adicionar_carrinho">Adicionar ao Carrinho</button>
+      </div>
+    </div>
+  </div>
+  <h1 class="titulo_sessao">Placa de Video</h1>
+  <div id="produto_baixo">
+
+    <div class="produto">
+      <p class="nome_produto">RTX 4090</p>
+      <img alt="Imagem do Produto" class="imagem_produto"
+        src="https://http2.mlstatic.com/D_NQ_NP_917585-MLA52004310307_102022-O.jpg">
+      <div class="descricao_produto">
+        <h3 class="preco_produto">R$ 500.99</h3>
+        <button id="RTX" class="adicionar_carrinho">Adicionar ao Carrinho</button>
+      </div>
+    </div>
+    <div class="produto">
+      <p class="nome_produto">rx6600xt</p>
+      <img alt="Imagem do Produto" class="imagem_produto"
+        src="https://http2.mlstatic.com/D_NQ_NP_638727-MLA50235336411_062022-O.jpg">
+      <div class="descricao_produto">
+        <h3 class="preco_produto">R$ 900.25</h3>
+        <button id="RX" class="adicionar_carrinho">Adicionar ao Carrinho</button>
+      </div>
+    </div>
+
+  </div>
+  <h1 class="titulo_sessao">Carrinho</h1>
+  <div id="carrinho">
+    <table id="tabela_carrinho">
+      <tr>
+        <th>Produto</th>
+        <th>Preço</th>
+      </tr>
+    </table>
+  </div>
+  <div>
+    <button id="comprar">Comprar</button>
+  </div>
+</body>
+
+
+</html>

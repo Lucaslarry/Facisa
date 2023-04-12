@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url(../midia/main_background.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+header {
+    display: flex;
+    gap: 22%;
+}
+
+
+label {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    margin: 1.25rem 6.25rem 2.4rem 20%;
+    font-size: 15px;
+    font-weight: 450;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
+
+
+
+input {
+    margin-top: 1.5rem;
+    border: none;
+    border-bottom: 0.06rem solid #104488;
+    width: 90%;
+    height: 3vh;
+    border-radius: 0.06;
+}
+
+input:focus {
+    outline: none;
+}
+
+button {
+    cursor: pointer;
+}
+
+#titulo {
+    display: flex;
+    width: 15.625rem;
+    height: 2.1875rem;
+    border: 0.125rem solid #104488;
+    border-radius: 1.25rem;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.9375rem;
+}
+
+#titulo h1 {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 0.625rem;
+    color: #031d3e;
+
+}
+
+#logo {
+    width: 9.375rem;
+    margin-top: 0.1875rem;
+}
+
+#voltar {
+    width: 7.5rem;
+    height: 3.125rem;
+    border-radius: 6.25rem;
+    border-color: #104488;
+    background-color: #104488;
+    color: aliceblue;
+    margin: 0.9375rem 0 0 11.25rem;
+}
+
+#voltar:hover,
+#cadastrar:hover {
+    background-color: #0e2037;
+    border: none;
+}
+
+#formulario_cadastro {
+    display: flex;
+}
+
+#cadastrar {
+    width: 9.3rem;
+    height: 3.1rem;
+    border-radius: 0.6rem;
+    border-color: #104488;
+    background-color: #104488;
+    color: aliceblue;
+    margin-left: 47.5%;
+}
+
+#esquerda {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    width: 50%;
+}
+
+#direita {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    width: 50%;
+}
+
+@media (max-width: 600px) {
+
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #voltar {
+        margin-left: 0;
+        margin-top: 1.25rem;
+    }
+
+    #formulario_cadastro {
+        flex-direction: column;
+    }
+
+    #esquerda,
+    #direita {
+        width: 100%;
+    }
+
+    label {
+        margin: 1.25rem 0 0.6rem 0;
+        text-align: center;
+    }
+
+}

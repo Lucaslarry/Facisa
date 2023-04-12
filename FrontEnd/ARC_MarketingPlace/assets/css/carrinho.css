@@ -1,0 +1,61 @@
+body {
+    background-image: url(../midia/main_background.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+}
+
+#botaoimg {
+    border-radius: 50%;
+    width: 4.6875rem;
+}
+
+#containercar {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 14.375rem;
+    margin-top: 3.125rem;
+    position: absolute;
+}
+
+#titulo {
+    display: flex;
+    justify-content: center;
+    padding-top: 1.875rem;
+}
+
+h1 {
+    background-color: white;
+    border-style: solid;
+    border-color: #104488;
+    border-radius: 1.25rem;
+    font-family: "Outfit", sans-serif;
+    color: #104488;
+    font-weight: 1000;
+    margin: 1.25rem;
+    padding: 0.625rem;
+}
+
+#voltar_botao {
+    margin-right: 43.75%;
+    margin-top: 0.625rem;
+    background-color: #104488;
+    border-radius: 1.875rem;
+    padding: 0.625rem;
+    width: 4.375rem;
+    color: white;
+}
+
+button {
+    cursor: pointer;
+}
+
+#botaovolt {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    right: -51.875rem;
+    top: -5.125rem;
+}

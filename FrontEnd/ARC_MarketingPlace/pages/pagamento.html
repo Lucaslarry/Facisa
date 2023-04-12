@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criar Conta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/pagamento.css">
+  <script src="/js/main.js" async></script>
+</head>
+
+<body>
+  <main>
+    <header>
+      <button id="voltar" class="voltar">Voltar</button>
+      <div id="titulo">
+        <h1>Realize seu Pagamento!</h1>
+      </div>
+      <img src="/assets/midia/logo.png" alt="imagem_logo" id="logo">
+    </header>
+
+    <form id="formulario_pagar">
+      <div id="esquerda">
+        <label>
+          Nome Completo No cartão
+          <input type="text" placeholder="Nome Completo" id="nome_completo" required>
+        </label>
+        <label>
+          Cartão
+          <input type="text" placeholder="Cartão" id="cartao" minlength="13" maxlength="16" required>
+        </label>
+        <label>
+          CVC
+          <input type="text" placeholder="CVC" id="senha_cadastro" minlength="3" maxlength="3" required>
+        </label>
+      </div>
+      <div id="direita">
+        <label>
+          Endereço
+          <input type="text" placeholder="Endereço" required>
+        </label>
+        <label>
+          Celular
+          <input type="tel" placeholder="Número de Telefone" name="celular" required>
+        </label>
+        <label>
+          Data de Vencimento
+          <input type="date" name="datanasc" required>
+        </label>
+      </div>
+    </form>
+    <button type="submit" form="formulario_pagar" id="pagar">
+      Pagar
+    </button>
+  </main>
+</body>
+
+
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criar Conta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/criar_conta.css">
+  <script src="../js/main.js" async></script>
+</head>
+
+<body>
+  <main>
+    <header>
+      <button id="voltar" class="voltar">Voltar</button>
+      <div id="titulo">
+        <h1>Realize seu Cadastro!</h1>
+      </div>
+      <img src="../assets/midia/logo.png" alt="imagem_logo" id="logo">
+    </header>
+
+    <form id="formulario_cadastro">
+      <div id="esquerda">
+        <label>
+          Nome Completo
+          <input type="text" placeholder="Nome Completo" id="nome_completo" required>
+        </label>
+        <label>
+          E-mail
+          <input type="email" placeholder="E-mail" id="email" required>
+        </label>
+        <label>
+          Senha
+          <input type="password" placeholder="Senha" id="senha_cadastro" maxlength="16" required>
+        </label>
+        <label>
+          CPF
+          <input type="password" placeholder="Seu CPF" name="cpf" maxlength="11" required>
+        </label>
+      </div>
+      <div id="direita">
+        <label>
+          Estado
+          <input type="text" placeholder="Estado" required>
+        </label>
+        <label>
+          Endereço
+          <input type="text" placeholder="Endereço" required>
+        </label>
+        <label>
+          Celular
+          <input type="tel" placeholder="Número de Telefone" name="celular" required>
+        </label>
+        <label>
+          Data de Nascimento
+          <input type="date" name="datanasc" required>
+        </label>
+      </div>
+    </form>
+    <button type="submit" form="formulario_cadastro" id="cadastrar">
+      Cadastrar
+    </button>
+  </main>
+</body>
+
+
+</html>

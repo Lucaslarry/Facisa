@@ -1,0 +1,157 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(../midia/main_background.jpg);
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+button {
+    cursor: pointer;
+    width: 11.25rem;
+    margin-top: 1.875rem;
+    background-color: #104488;
+    padding: 0.625rem;
+    border-radius: 0.9375rem;
+    color: white;
+}
+
+button:hover {
+    background-color: #092851;
+}
+
+p {
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+h3 {
+    margin-top: 1.625rem;
+    font-weight: 100;
+}
+
+#tabela_carrinho td {
+    padding: 3.125rem;
+    font-weight: 600;
+    color: #104488;
+    border-bottom: 0.0625rem solid black;
+}
+
+#voltar_produto {
+    width: 6.25rem;
+    margin-right: 55rem;
+}
+
+#comprar {
+    display: none;
+}
+
+#topBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15.625rem;
+    height: 2.1875rem;
+    border: 0.125rem solid #104488;
+    border-radius: 1.25rem;
+}
+
+#titulo {
+    font-size: 0.9375rem;
+    font-weight: 10;
+    color: #104488;
+}
+
+#produto_cima {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12.5rem;
+    width: 100%;
+    height: 10vh;
+}
+
+#produto_baixo {
+    display: flex;
+    gap: 12.5rem;
+    width: 100%;
+    height: 10vh;
+    align-items: center;
+    justify-content: center;
+}
+
+#carrinho {
+    width: 100%;
+    display: flex;
+    gap: 3.125rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.produto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.titulo_sessao {
+    font-size: 1.875rem;
+    margin: 8rem;
+}
+
+img {
+    width: 9.375rem;
+    height: 9.375rem;
+    margin: 0.3125rem;
+}
+
+.descricao_produto {
+    width: 18.75rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 0.625rem;
+}
+
+@media (max-width: 600px) {
+    button {
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    #produto_cima,
+    #produto_baixo {
+        gap: 2.5rem;
+        height: 15vh;
+    }
+
+    #carrinho {
+        gap: 1.25rem;
+    }
+
+    .titulo_sessao {
+        font-size: 1.5rem;
+        margin: 5rem 2rem;
+    }
+
+    img {
+        width: 7.5rem;
+        height: 7.5rem;
+        margin: 0.3125rem;
+    }
+
+    .descricao_produto {
+        width: 15rem;
+        gap: 0.3125rem;
+    }
+}
