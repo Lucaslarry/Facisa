@@ -1,6 +1,6 @@
 # Sobre o projeto
 
-O Arc MarketingPlace é um projeto de um site construido com objetivo de testar o conhecimento de html, css e JavaScript
+O Arc MarketingPlace é um projeto funcional de um site tentando simular como seria um marketing place de peças de computadores foi feito como um teste de conhecimento para HTML, CSS e Java Script
 
 construido durante o segundo módulo da universidade unifacisa.
 

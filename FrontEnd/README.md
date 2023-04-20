@@ -14,4 +14,5 @@ Aqui estão todos os projetos em front-end que estarei fazendo no decorrer da fa
 Projetos:
 
 * [Acesse o primeiro Projeto](https://github.com/lucaslarry/Facisa/tree/main/FrontEnd/Playlist)
+* [Acesse o Segundo Projeto](https://github.com/lucaslarry/Facisa/tree/main/FrontEnd/ARC_MarketingPlace)
 
