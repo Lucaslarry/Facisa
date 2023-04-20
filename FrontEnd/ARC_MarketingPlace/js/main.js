@@ -6,7 +6,7 @@ function checar_dados(event) {
 
 
    if (login == email && senha == senha_cadastro) {
-      window.location.href = "/pages/perfil.html"
+      window.location.href = "/FrontEnd/ARC_MarketingPlace/pages/perfil.html"
    }
    else if (email == null || senha == null) {
       alert("Você ainda não se cadastrou")
@@ -27,7 +27,7 @@ function cadastrar(event) {
       localStorage.setItem('senha', senha_cadastro)
       localStorage.setItem('nome', nome_completo)
       alert("cadastro realizado com sucesso")
-      window.location.href = "/index.html";
+      window.location.href = "/FrontEnd/ARC_MarketingPlace/index.html";
 
    }
    else {
@@ -39,20 +39,9 @@ function cadastrar(event) {
 function voltar() {
    let resposta = confirm("Realmente deseja voltar?");
 
-   if (resposta) {
-      switch (pathname) {
-         case '/pages/perfil.html':
-            window.location.href = '/index.html';
-            break;
-         case '/pages/mudar_senha.html':
-            window.location.href = '/index.html';
-            break;
-         case '/pages/criar_conta.html':
-            window.location.href = '/index.html';
-            break;
-      }
-   }
+   if (resposta) { window.location.href = '/FrontEnd/ARC_MarketingPlace/index.html'; }
 }
+
 
 function mudar_form(event) {
    event.preventDefault();
@@ -76,7 +65,7 @@ function resetar_senha(event) {
    senha_cadastro = document.getElementById("senha_esqueci_senha").value;
    localStorage.setItem('senha', senha_cadastro);
    alert("Senha mudada com sucesso!");
-   window.location.href = "/index.html";
+   window.location.href = "../index.html";
 }
 
 function pagar(event) {
@@ -114,15 +103,16 @@ for (let i = 0; i < BOTAO_VOLTAR.length; i++) {
 }
 
 const pathname = window.location.pathname;
+console.log(pathname)
 
 switch (pathname) {
-   case '/index.html':
+   case '/FrontEnd/ARC_MarketingPlace/index.html':
       BOTAO_LOGAR.addEventListener("click", checar_dados);
-   case '/pages/criar_conta.html':
+   case '/FrontEnd/ARC_MarketingPlace/pages/criar_conta.html':
       BOTAO_CADASTRAR.addEventListener("click", cadastrar);
    case '/pages/perfil.html':
       document.getElementById('bemvindo').innerHTML = "Bem Vindo, " + (nome_completo);
-   case '/pages/mudar_senha.html':
+   case '/FrontEnd/ARC_MarketingPlace/pages/mudar_senha.html':
       BOTAO_ESQUECEU_SENHA1.addEventListener("click", mudar_form);
       BOTAO_ESQUECEU_SENHA2.addEventListener("click", resetar_senha);
    case '/pages/pagamento.html':
