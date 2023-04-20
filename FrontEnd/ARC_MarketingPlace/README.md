@@ -4,9 +4,10 @@ O Arc MarketingPlace é um projeto de um site construido com objetivo de testar 
 
 construido durante o segundo módulo da universidade unifacisa.
 
-<img alt="Foto Site" src="../imagens/arc2.png" align="center" width="150"><img alt="Foto Site" src="../imagens/arc2.png" align="center" width="150"><img alt="Foto Site" src="../imagens/arc3.png" align="center" width="150">
+<img src="imagem/arc1.png" align="center" width="450"><img src="imagem/arc2.png" align="center" width="450"><img src="imagem/arc3.png" align="center" width="450">
 
 # Tecnologias utilizadas
-- Python
-- MySQL
+- HTML
+- CSS
+- JavaScript
 
