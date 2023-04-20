@@ -110,12 +110,12 @@ switch (pathname) {
       BOTAO_LOGAR.addEventListener("click", checar_dados);
    case '/FrontEnd/ARC_MarketingPlace/pages/criar_conta.html':
       BOTAO_CADASTRAR.addEventListener("click", cadastrar);
-   case '/pages/perfil.html':
+   case '/FrontEnd/ARC_MarketingPlace/pages/perfil.html':
       document.getElementById('bemvindo').innerHTML = "Bem Vindo, " + (nome_completo);
    case '/FrontEnd/ARC_MarketingPlace/pages/mudar_senha.html':
       BOTAO_ESQUECEU_SENHA1.addEventListener("click", mudar_form);
       BOTAO_ESQUECEU_SENHA2.addEventListener("click", resetar_senha);
-   case '/pages/pagamento.html':
+   case '/FrontEnd/ARC_MarketingPlace/pages/pagamento.html':
       BOTAO_PAGAR.addEventListener("click", pagar);
 
 

@@ -18,7 +18,8 @@ function removerDoCarrinho(nomeProduto) {
     delete carrinho[nomeProduto];
     atualizarTabelaCarrinho();
 }
-
+const pathname = window.location.pathname;
+console.log(pathname)
 function atualizarTabelaCarrinho() {
     var tabelaCarrinho = document.getElementById("tabela_carrinho");
 
