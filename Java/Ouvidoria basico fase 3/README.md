@@ -2,11 +2,10 @@
 
 A Fase 3 da Ouvidoria é uma atualização da segunda fase agora utilizando conexão com o banco de dados (SGBD) MySQL e usando as funções básicas de CRUD.
 
-construido durante o primeiro módulo da universidade unifacisa.
 
 ### Requerimentos:
 
-    Aplicação do Sistema Gerenciador de Banco de Dados (SGBD) MySQL na Integração com o Sistema de Ouvidoria construida em python.
+    Aplicação do Sistema Gerenciador de Banco de Dados (SGBD) MySQL na Integração com o Sistema de Ouvidoria construida em Java JDBC.
 
     O sistema deve conter Obrigatoriamente:
 
@@ -28,31 +27,22 @@ construido durante o primeiro módulo da universidade unifacisa.
 
 # Como executar o projeto
 
-Pré-requisitos: Python 3.9 e MySQL
 
-```bash
-# clonar repositório
-$ git clone https://github.com/Lucaslarry/Facisa/tree/main/Python/Ouvidoria%20v3.0
-```
 Dentro do MySQL Workbench crie uma nova conexão com o user root e o password lucas, depois, crie as tabelas com os seguintes comandos:
 ```sql
 CREATE DATABASE ouvidoria;
 
-USE ouvidoria;
 
 CREATE TABLE comentario (
     id INT AUTO_INCREMENT,
     comentario varchar(300),
     tipo varchar(30),
+    nome varchar(30),
     PRIMARY KEY(id)
 );
 ```
-Depois é só rodar o arquivo main.py com:
-```bash
-# executar o projeto
-$ python main.py
-```
+
 # Tecnologias utilizadas
-- Python
+- Java
 - MySQL
 

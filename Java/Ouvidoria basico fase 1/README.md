@@ -16,5 +16,5 @@ construido durante o terceiro módulo da universidade unifacisa.
 
 
 # Tecnologias utilizadas
-- Javv
+- Java
 
