@@ -1,9 +1,9 @@
 package entities;
 
 public class Produtos {
-    String nome;
-    int codigo;
-    int estoque;
+    private String nome;
+    private int codigo;
+    private int estoque;
 
     public Produtos(String nome, int codigo) {
         this.nome = nome;
@@ -23,6 +23,14 @@ public class Produtos {
 
     public int getCodigo() {
         return codigo;
+    }
+
+    public int getEstoque() {
+        return estoque;
+    }
+
+    public void setEstoque(int estoque) {
+        this.estoque = estoque;
     }
 
     @Override

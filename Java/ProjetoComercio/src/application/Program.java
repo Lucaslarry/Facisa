@@ -1,5 +1,6 @@
 package application;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import entities.Comercio;
@@ -12,6 +13,7 @@ public class Program {
         Produtos prod = null;
         boolean lojaFechada = false;
         Scanner sc = new Scanner(System.in);
+
         while (lojaFechada == false) {
             try {
                 System.out.println("1. Listar Produtos");
@@ -29,7 +31,8 @@ public class Program {
                 }
 
                 switch (opcao) {
-                    case 1 -> System.out.println("listando");
+                    case 1 -> loja.listarProdutos();
+
                     case 2 -> {
                         System.out.print("Digite o nome do produto: ");
                         String nome = sc.nextLine();
@@ -56,9 +59,41 @@ public class Program {
                         }
 
                     }
-                    case 3 -> System.out.println("Adicionando");
-                    case 4 -> System.out.println("Removendo");
-                    case 5 -> System.out.println("Vendendo");
+
+                    case 3 -> {
+                        System.out.print("Digite o código do produto que deseja atualizar: ");
+                        int codigo = sc.nextInt();
+                        sc.nextLine();
+                        System.out.print("Digite o novo estoque: ");
+                        int novoEstoque = sc.nextInt();
+                        sc.nextLine();
+                        loja.adicionarEstoque(codigo, novoEstoque);
+
+                    }
+
+                    case 4 -> {
+                        System.out.print("Digite o código do produto que deseja deletar: ");
+                        int codigo = sc.nextInt();
+                        sc.nextLine();
+                        System.out.print("Realmente deseja deletar [S/N]: ");
+                        char deletar = sc.next().charAt(0);
+                        deletar = Character.toUpperCase(deletar);
+                        if (deletar == 'S') {
+                            loja.removerProduto(codigo);
+                        } else {
+                            System.out.println("Exclusão cancelada! ");
+                        }
+                    }
+                    case 5 -> {
+                        System.out.print("Digite o código do produto que deseja vender: ");
+                        int codigo = sc.nextInt();
+                        sc.nextLine();
+                        System.out.print("Digite a quantidade que deseja vender: ");
+                        int venda = sc.nextInt();
+                        sc.nextLine();
+                        loja.venderProduto(codigo, venda);
+                    }
+
                     case 6 -> {
                         System.out.println("Fechando loja");
                         lojaFechada = true;
@@ -69,6 +104,9 @@ public class Program {
 
             } catch (ProdutosException e) {
                 System.out.println(e.getMessage());
+            } catch (InputMismatchException e) {
+                System.out.println("Valor inválido, tente novamente.");
+                sc.nextLine();
             }
         }
         sc.close();
