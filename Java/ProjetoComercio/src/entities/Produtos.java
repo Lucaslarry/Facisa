@@ -29,7 +29,7 @@ public class Produtos {
         return estoque;
     }
 
-    public void setEstoque(int estoque) {
+    protected void setEstoque(int estoque) {
         this.estoque = estoque;
     }
 
