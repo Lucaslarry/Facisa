@@ -56,13 +56,13 @@ public class Comercio {
             }
 
         } catch (ProdutosException e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
     }
 
     public void removerProduto(int codigo) {
+        boolean produtoEncontrado = false;
         try {
-            boolean produtoEncontrado = false;
             Iterator<Produtos> iterator = produtosCadastrados.iterator();
 
             while (iterator.hasNext()) {
@@ -94,6 +94,8 @@ public class Comercio {
                         System.out.println("Produto vendido com sucesso!");
                         produtoEncontrado = true;
                         break;
+                    } else {
+                        System.out.println("Não há estoque o suficiente.");
                     }
                 }
             }

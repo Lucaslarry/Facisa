@@ -13,19 +13,18 @@ public class Program {
         Produtos prod = null;
         boolean lojaFechada = false;
         Scanner sc = new Scanner(System.in);
-
         while (lojaFechada == false) {
             try {
-                System.out.println("1. Listar Produtos");
-                System.out.println("2. Cadastrar Produtos");
-                System.out.println("3. Adicionar Estoque");
-                System.out.println("4. Remover Produtos");
-                System.out.println("5. Vender Produtos");
-                System.out.println("6. Fechar Loja");
+                System.out.println();
+                System.out.println(" 1. Listar Produtos");
+                System.out.println(" 2. Cadastrar Produtos");
+                System.out.println(" 3. Adicionar Estoque");
+                System.out.println(" 4. Remover Produtos");
+                System.out.println(" 5. Vender Produtos");
+                System.out.println(" 6. Fechar Loja");
                 System.out.print("Sua escolha: ");
                 int opcao = sc.nextInt();
                 sc.nextLine();
-
                 if (loja == null && opcao != 2) {
                     throw new ProdutosException("Para abrir a loja, cadastre um produto.");
                 }
@@ -103,9 +102,9 @@ public class Program {
                 }
 
             } catch (ProdutosException e) {
-                System.out.println(e.getMessage());
+                System.out.println("ERRO: " + e.getMessage());
             } catch (InputMismatchException e) {
-                System.out.println("Valor inválido, tente novamente.");
+                System.out.println("ERRO: Valor inválido, tente novamente.");
                 sc.nextLine();
             }
         }
