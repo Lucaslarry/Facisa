@@ -7,6 +7,7 @@ import java.util.List;
 import entities.categorias.Categoria;
 
 public class Comercio {
+
     List<Produtos> produtosCadastrados = new ArrayList<>();
 
     public Comercio(Produtos prod) {
@@ -22,13 +23,28 @@ public class Comercio {
         return false;
     }
 
+    public boolean verificarSaldo(Double preco) {
+        double novoSaldo = Relatorio.getSaldo() - preco;
+        if (novoSaldo >= 0) {
+            return true;
+        } else {
+            try {
+                throw new ProdutosException("Não há saldo o suficiente para comprar este produto");
+            } catch (ProdutosException e) {
+                System.out.println(e.getMessage());
+            }
+            return false;
+        }
+    }
+
     public void cadastrarProduto(Produtos prod) {
         try {
-            if (!verificarCodigo(prod.getCodigo())) {
+            if (!verificarCodigo(prod.getCodigo()) && verificarSaldo(prod.getCustoDeCompra())) {
                 produtosCadastrados.add(prod);
                 System.out.println("Produto Cadastrado com sucesso! " + prod);
+                Relatorio.diminuirSaldo(prod.getCustoDeCompra());
             } else {
-                throw new ProdutosException("Produto não cadastrado: Código duplicado");
+                throw new ProdutosException("Produto não cadastrado");
             }
         } catch (ProdutosException e) {
             System.out.println(e.getMessage());
@@ -45,7 +61,8 @@ public class Comercio {
     public void listarProdutosCategoria(Categoria cat) {
         for (Produtos prod : produtosCadastrados) {
             if (cat.getClass().equals(prod.getCategoria().getClass())) {
-                System.out.println(prod);
+                ProdutoWrapper prodWrapper = new ProdutoWrapper(prod);
+                System.out.println(prodWrapper);
             }
         }
     }
@@ -55,6 +72,9 @@ public class Comercio {
         try {
             for (Produtos prod : produtosCadastrados) {
                 if (prod.getCodigo() == codigo) {
+                    if (!verificarSaldo(prod.getCustoDeCompra())) {
+                        break;
+                    }
                     prod.setEstoque(prod.getEstoque() + addEstoque);
                     System.out.println("Estoque atualizado com sucesso!");
                     break;
@@ -96,6 +116,7 @@ public class Comercio {
                     if (prod.getEstoque() >= removeEstoque) {
                         prod.setEstoque(prod.getEstoque() - removeEstoque);
                         System.out.println("Produto vendido com sucesso!");
+                        Relatorio.acrescentarSaldo(prod.getValorDeVenda());
                         break;
                     } else {
                         System.out.println("Não há estoque o suficiente.");

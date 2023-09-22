@@ -11,7 +11,10 @@ public class Produtos {
     private Double valorDeVenda;
 
     public Produtos(String nome, int codigo, int estoque, Categoria categoria, Double custoDeCompra,
-            Double valorDeVenda) {
+            Double valorDeVenda) throws ProdutosException {
+        if (custoDeCompra > valorDeVenda) {
+            throw new ProdutosException("O Valor de compra não pode ser maior que o de venda!");
+        }
         this.nome = nome;
         this.codigo = codigo;
         this.estoque = estoque;
@@ -20,7 +23,11 @@ public class Produtos {
         this.valorDeVenda = valorDeVenda;
     }
 
-    public Produtos(String nome, int codigo, Categoria categoria, Double custoDeCompra, Double valorDeVenda) {
+    public Produtos(String nome, int codigo, Categoria categoria, Double custoDeCompra, Double valorDeVenda)
+            throws ProdutosException {
+        if (custoDeCompra > valorDeVenda) {
+            throw new ProdutosException("O Valor de compra não pode ser maior que o de venda!");
+        }
         this.nome = nome;
         this.codigo = codigo;
         this.categoria = categoria;

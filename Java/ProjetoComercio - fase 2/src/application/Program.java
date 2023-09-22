@@ -18,9 +18,9 @@ public class Program {
         int codigo = 1;
         Categoria cat = null;
         Scanner sc = new Scanner(System.in);
-        try {
-            while (lojaFechada == false) {
 
+        while (lojaFechada == false) {
+            try {
                 UI.menu();
                 int opcao = sc.nextInt();
                 sc.nextLine();
@@ -58,12 +58,15 @@ public class Program {
                         UI.menuCategorias();
                         int opcaocat = sc.nextInt();
                         sc.nextLine();
+                        System.out.print("Defina o Atributo: ");
+                        String atributo = sc.nextLine();
                         if (opcaocat == 1) {
                             cat = new Eletronico();
                         }
                         if (opcaocat == 2) {
                             cat = new Comida();
                         }
+                        cat.setAtributo(atributo);
                         System.out.println("Qual custo de compra do produto?");
                         Double custo = sc.nextDouble();
                         System.out.println("Qual valor de venda do produto?");
@@ -130,15 +133,18 @@ public class Program {
 
                 }
 
+            } catch (ProdutosException e) {
+                System.out.println("ERRO: " + e.getMessage());
+            } catch (InputMismatchException e) {
+                System.out.println("ERRO: Valor inválido, tente novamente.");
+                sc.nextLine();
+            } catch (java.lang.IllegalStateException e) {
+                System.out.println("ERRO: Valor inválido, tente novamente.");
+                sc.nextLine();
             }
-        } catch (ProdutosException e) {
-            System.out.println("ERRO: " + e.getMessage());
-        } catch (InputMismatchException e) {
-            System.out.println("ERRO: Valor inválido, tente novamente.");
-            sc.nextLine();
-        } finally {
-            sc.close();
-        }
-    }
 
+        }
+        sc.close();
+
+    }
 }
