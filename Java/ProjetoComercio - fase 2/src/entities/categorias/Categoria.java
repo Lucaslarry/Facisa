@@ -1,7 +1,7 @@
 package entities.categorias;
 
 public abstract class Categoria {
-    private String atributo;
+    private String atributo = "oi";
 
     public void setAtributo(String atributo) {
         this.atributo = atributo;

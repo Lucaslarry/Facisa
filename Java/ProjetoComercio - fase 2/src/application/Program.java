@@ -1,11 +1,13 @@
 package application;
 
+import java.io.File;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import entities.Comercio;
 import entities.Produtos;
 import entities.ProdutosException;
+import entities.Relatorio;
 import entities.categorias.Categoria;
 import entities.categorias.Comida;
 import entities.categorias.Eletronico;
@@ -18,12 +20,18 @@ public class Program {
         int codigo = 1;
         Categoria cat = null;
         Scanner sc = new Scanner(System.in);
-
+        Relatorio.criarArquivoTemporario();
+        File arquivoNovo = new File("listaProdutos.txt");
         while (lojaFechada == false) {
             try {
+                System.out.println("SALDO ATUAL: R$" + Relatorio.getSaldo());
                 UI.menu();
                 int opcao = sc.nextInt();
                 sc.nextLine();
+                if (loja == null && arquivoNovo.exists()) {
+                    loja = new Comercio();
+
+                }
                 if (loja == null && opcao != 2) {
                     throw new ProdutosException("Para abrir a loja, cadastre um produto.");
                 }
@@ -58,15 +66,12 @@ public class Program {
                         UI.menuCategorias();
                         int opcaocat = sc.nextInt();
                         sc.nextLine();
-                        System.out.print("Defina o Atributo: ");
-                        String atributo = sc.nextLine();
                         if (opcaocat == 1) {
                             cat = new Eletronico();
                         }
                         if (opcaocat == 2) {
                             cat = new Comida();
                         }
-                        cat.setAtributo(atributo);
                         System.out.println("Qual custo de compra do produto?");
                         Double custo = sc.nextDouble();
                         System.out.println("Qual valor de venda do produto?");
@@ -75,7 +80,7 @@ public class Program {
                         char estoqueInicial = sc.next().charAt(0);
                         estoqueInicial = Character.toUpperCase(estoqueInicial);
                         if (estoqueInicial == 'S') {
-                            System.out.print("Novo Estoque: ");
+                            System.out.print("Adicionar quantos ao estoque: ");
                             int estoque = sc.nextInt();
                             sc.nextLine();
 
@@ -90,6 +95,7 @@ public class Program {
                             loja.cadastrarProduto(prod);
                         }
                         codigo++;
+                        loja.carregarProdutosDeArquivo();
                     }
                     case 3 -> {
                         System.out.print("Digite o código do produto que deseja atualizar: ");
@@ -145,6 +151,6 @@ public class Program {
 
         }
         sc.close();
-
+        loja.salvarProdutosEmArquivo();
     }
 }

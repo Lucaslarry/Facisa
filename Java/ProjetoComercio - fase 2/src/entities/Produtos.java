@@ -1,6 +1,8 @@
 package entities;
 
 import entities.categorias.Categoria;
+import entities.categorias.Comida;
+import entities.categorias.Eletronico;
 
 public class Produtos {
     private String nome;
@@ -15,6 +17,10 @@ public class Produtos {
         if (custoDeCompra > valorDeVenda) {
             throw new ProdutosException("O Valor de compra não pode ser maior que o de venda!");
         }
+        if (estoque < 0) {
+            throw new ProdutosException("O estoque não pode ser menor que 0!");
+        }
+
         this.nome = nome;
         this.codigo = codigo;
         this.estoque = estoque;
@@ -27,6 +33,9 @@ public class Produtos {
             throws ProdutosException {
         if (custoDeCompra > valorDeVenda) {
             throw new ProdutosException("O Valor de compra não pode ser maior que o de venda!");
+        }
+        if (estoque < 0) {
+            throw new ProdutosException("O estoque não pode ser menor que 0!");
         }
         this.nome = nome;
         this.codigo = codigo;
@@ -42,6 +51,10 @@ public class Produtos {
 
     public int getCodigo() {
         return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     public int getEstoque() {
@@ -64,10 +77,43 @@ public class Produtos {
         return valorDeVenda;
     }
 
+    public String toCsvString() {
+        return this.nome + "," + this.codigo + "," + this.estoque + "," + this.categoria + "," + this.custoDeCompra
+                + ","
+                + this.valorDeVenda;
+    }
+
+    private static Categoria acharCat(String campo) {
+        if (campo.equals("Eletronico")) {
+            return new Eletronico();
+        }
+        if (campo.equals("Comida")) {
+            return new Comida();
+        }
+
+        return null;
+    }
+
+    public static Produtos fromCsvString(String csvString) throws ProdutosException {
+
+        String[] campos = csvString.split(",");
+        String stringCat = campos[3];
+
+        String nome = campos[0];
+        int codigo = Integer.parseInt(campos[1]);
+        int estoque = Integer.parseInt(campos[2]);
+        Categoria categoria = acharCat(stringCat);
+        Double custoDeCompra = Double.parseDouble(campos[4]);
+        Double valorDeVenda = Double.parseDouble(campos[5]);
+
+        return new Produtos(nome, codigo, estoque, categoria, custoDeCompra, valorDeVenda);
+    }
+
     @Override
     public String toString() {
         return this.nome + " (cód.: " + this.codigo + " | estoque: " + this.estoque +
                 " | categoria: " + this.categoria + " | custo de compra: " + this.custoDeCompra
                 + " | Valor de Venda: " + this.valorDeVenda + ")";
     }
+
 }
