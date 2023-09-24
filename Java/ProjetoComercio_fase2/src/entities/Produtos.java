@@ -1,5 +1,6 @@
 package entities;
 
+import application.UI;
 import entities.categorias.Categoria;
 import entities.categorias.Comida;
 import entities.categorias.Eletronico;
@@ -78,9 +79,10 @@ public class Produtos {
     }
 
     public String toCsvString() {
-        return this.nome + "," + this.codigo + "," + this.estoque + "," + this.categoria + "," + this.custoDeCompra
+        return this.nome + "," + this.codigo + "," + this.estoque + "," + this.categoria + ","
+                + UI.FormatarDecimal(this.custoDeCompra)
                 + ","
-                + this.valorDeVenda;
+                + UI.FormatarDecimal(this.valorDeVenda);
     }
 
     private static Categoria acharCat(String campo) {
@@ -112,8 +114,8 @@ public class Produtos {
     @Override
     public String toString() {
         return this.nome + " (cód.: " + this.codigo + " | estoque: " + this.estoque +
-                " | categoria: " + this.categoria + " | custo de compra: " + this.custoDeCompra
-                + " | Valor de Venda: " + this.valorDeVenda + ")";
+                " | categoria: " + this.categoria + " | custo de compra: " + UI.FormatarDecimal(this.custoDeCompra)
+                + " | Valor de Venda: " + UI.FormatarDecimal(this.valorDeVenda) + ")";
     }
 
 }

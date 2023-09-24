@@ -13,9 +13,14 @@ public class UI {
     }
 
     public static void menuCategorias() {
-        System.out.println(" 1. Eletronicos");
-        System.out.println(" 2. Comidas");
+        System.out.println(" 1. Eletronico");
+        System.out.println(" 2. Comida");
         System.out.print("Sua escolha: ");
+    }
+
+    public static String FormatarDecimal(Double valor) {
+        String saldo = String.format("%.2f", valor);
+        return saldo;
     }
 
 }

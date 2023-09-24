@@ -1,0 +1,13 @@
+Saldo Atual: 50000.00
+Compra de 10 tv's : -R$ 29999.90
+Saldo Atual: 20000.10
+Compra de 7 celular's : -R$ 1400.00
+Saldo Atual: 18600.10
+Compra de 200 ma‡a's : -R$ 1000.00
+Saldo Atual: 17600.10
+Venda de 2 tv's : +R$ 6999.98
+Saldo Atual: 24600.08
+Compra de 1 tv's : -R$ 1000.00
+Saldo Atual: 23600.08
+Compra de 1 celular's : -R$ 1600.00
+Saldo Atual: 22000.08

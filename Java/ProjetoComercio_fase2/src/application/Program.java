@@ -2,6 +2,7 @@ package application;
 
 import java.io.File;
 import java.util.InputMismatchException;
+import java.util.Locale;
 import java.util.Scanner;
 
 import entities.Comercio;
@@ -14,6 +15,8 @@ import entities.categorias.Eletronico;
 
 public class Program {
     public static void main(String[] args) throws Exception {
+        Locale.setDefault(new Locale("en", "US"));
+
         Comercio loja = null;
         Produtos prod = null;
         boolean lojaFechada = false;
@@ -24,7 +27,7 @@ public class Program {
         File arquivoNovo = new File("listaProdutos.txt");
         while (lojaFechada == false) {
             try {
-                System.out.println("SALDO ATUAL: R$" + Relatorio.getSaldo());
+                System.out.println("SALDO ATUAL: R$" + UI.FormatarDecimal(Relatorio.getSaldo()));
                 UI.menu();
                 int opcao = sc.nextInt();
                 sc.nextLine();
@@ -47,6 +50,7 @@ public class Program {
                         }
                         if (codigoaux == 2) {
                             UI.menuCategorias();
+                            System.out.print("Sua escolha: ");
                             int opcaocat = sc.nextInt();
                             sc.nextLine();
                             if (opcaocat == 1) {

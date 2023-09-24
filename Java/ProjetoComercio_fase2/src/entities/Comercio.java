@@ -26,13 +26,22 @@ public class Comercio {
 
     }
 
-    public boolean verificarCodigo(int codigo) {
+    public boolean verificarCodigoUnico(int codigo) {
         for (Produtos prod : produtosCadastrados) {
             if (prod.getCodigo() == codigo) {
-                return true;
+                return false;
             }
         }
-        return false;
+        return true;
+    }
+
+    public void atualizarCodigo(Produtos prod) {
+        int novoCodigo = prod.getCodigo() + 1;
+        prod.setCodigo(novoCodigo);
+        if (!verificarCodigoUnico(novoCodigo)) {
+            atualizarCodigo(prod);
+        }
+
     }
 
     public boolean verificarSaldo(Double preco) {
@@ -51,15 +60,13 @@ public class Comercio {
 
     public void cadastrarProduto(Produtos prod) {
         try {
-            if (verificarCodigo(prod.getCodigo())) {
-                int novoCodigo = prod.getCodigo() + 1;
-                prod.setCodigo(novoCodigo);
-                cadastrarProduto(prod);
-            } else if (!verificarCodigo(prod.getCodigo()) && prod.getEstoque() == 0) {
+            if (!verificarCodigoUnico(prod.getCodigo())) {
+                atualizarCodigo(prod);
+            }
+            if (prod.getEstoque() == 0) {
                 produtosCadastrados.add(prod);
                 System.out.println("Produto Cadastrado com sucesso! " + prod);
-            } else if (!verificarCodigo(prod.getCodigo())
-                    && verificarSaldo(prod.getCustoDeCompra() * prod.getEstoque())) {
+            } else if (verificarSaldo(prod.getCustoDeCompra() * prod.getEstoque())) {
                 produtosCadastrados.add(prod);
                 System.out.println("Produto Cadastrado com sucesso! " + prod);
                 Double novoSaldo = prod.getCustoDeCompra() * prod.getEstoque();
@@ -107,7 +114,7 @@ public class Comercio {
                     break;
                 }
             }
-            if (!verificarCodigo(codigo)) {
+            if (verificarCodigoUnico(codigo)) {
                 throw new ProdutosException("Não existe produto cadastrado com esse código");
             }
 
@@ -125,9 +132,10 @@ public class Comercio {
                 if (prod.getCodigo() == codigo) {
                     iterator.remove();
                     System.out.println("Produto removido com sucesso!");
+                    salvarProdutosEmArquivo();
                 }
             }
-            if (!verificarCodigo(codigo)) {
+            if (!verificarCodigoUnico(codigo)) {
                 throw new ProdutosException("Não existe produto cadastrado com esse código");
             }
         } catch (ProdutosException e) {
@@ -151,7 +159,7 @@ public class Comercio {
                     }
                 }
             }
-            if (!verificarCodigo(codigo)) {
+            if (verificarCodigoUnico(codigo)) {
                 throw new ProdutosException("Não existe produto cadastrado com esse código");
             }
         } catch (ProdutosException e) {
