@@ -26,6 +26,7 @@ A Fase 3 da Ouvidoria é uma atualização da segunda fase agora utilizando cone
 
 
 # Como executar o projeto
+Pré-requisitos: Java 17, MySQL
 
 ```bash
 # clonar repositório

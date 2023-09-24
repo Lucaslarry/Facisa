@@ -52,6 +52,8 @@ construido durante o quarto módulo da universidade unifacisa.
     6. Sair
     O sistema deve permitir que o usuário saia do programa
 
+# Como executar o projeto
+Pré-requisitos: Java 17
 ```bash
 # clonar repositório
 $ git clone https://github.com/lucaslarry/Facisa/tree/main/Java/ProjetoComercio_fase1

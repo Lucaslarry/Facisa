@@ -74,6 +74,9 @@ construido durante o quarto módulo da universidade unifacisa.
     O sistema deve permitir que o usuário saia do programa. O programa também deve salvar
     os produtos, estoque e saldo do comércio.
 
+
+# Como executar o projeto
+Pré-requisitos: Java 17
 ```bash
 # clonar repositório
 $ git clone https://github.com/lucaslarry/Facisa/tree/main/Java/ProjetoComercio_fase2
