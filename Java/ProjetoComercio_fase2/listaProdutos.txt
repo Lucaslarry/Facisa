@@ -1,2 +1,0 @@
-celular,2,7,Eletronico,200.00,5000.00
-maça,3,200,Comida,5.00,10.00

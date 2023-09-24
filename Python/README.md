@@ -11,8 +11,8 @@ Aqui estão todos os projetos que estarei fazendo no decorrer da faculdade utili
 
 Projetos:
 
-* [Acesse a primeira Ouvidoria](https://github.com/Lucaslarry/Facisa/tree/main/Python/Ouvidoria%20v1.0)
+* [Acesse a primeira Ouvidoria](https://github.com/lucaslarry/Facisa/tree/main/Python/OuvidoriaFase1)
 
-* [Acesse a segunda Ouvidoria](https://github.com/Lucaslarry/Facisa/tree/main/Python/Ouvidoria%20v2.0)
+* [Acesse a segunda Ouvidoria](https://github.com/lucaslarry/Facisa/tree/main/Python/OuvidoriaFase2)
 
-* [Acesse a terceira Ouvidoria](https://github.com/Lucaslarry/Facisa/tree/main/Python/Ouvidoria%20v3.0)
+* [Acesse a terceira Ouvidoria](https://github.com/lucaslarry/Facisa/tree/main/Python/OuvidoriaFase3)

@@ -32,7 +32,7 @@ Pré-requisitos: Python 3.9 e MySQL
 
 ```bash
 # clonar repositório
-$ git clone https://github.com/Lucaslarry/Facisa/tree/main/Python/Ouvidoria%20v3.0
+$ git clone https://github.com/lucaslarry/Facisa/tree/main/Python/OuvidoriaFase3
 ```
 Dentro do MySQL Workbench crie uma nova conexão com o user root e o password lucas, depois, crie as tabelas com os seguintes comandos:
 ```sql

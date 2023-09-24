@@ -29,8 +29,7 @@ Pré-requisitos: Python 3.9
 
 ```bash
 # clonar repositório
-$ git clone https://github.com/Lucaslarry/Facisa/tree/main/Python/Ouvidoria%20v1.0
-
+$ git clone https://github.com/lucaslarry/Facisa/tree/main/Python/OuvidoriaFase1
 # executar o projeto
 $ python main.py
 ```

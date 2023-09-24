@@ -16,7 +16,15 @@ construido durante o terceiro módulo da universidade unifacisa.
     > O Sistema deve aplicar herança tendo como super classe a classe Manifestação e como subclasses os respectivos tipos de manifestação. Ex: Reclamação, Elogio, Sugestão (Os nomes podem ser alterados)
     > Deve ser criada a classe Pessoa e a manifestação deve obrigatoriamente possuir uma pessoa.
 
-
+```bash
+# clonar repositório
+$ git clone https://github.com/lucaslarry/Facisa/tree/main/Java/OuvidoriaBasico_fase2
+# executar o projeto
+```
+Dentro da pasta application:
+```bash
+$ java Main.java
+```
 
 # Tecnologias utilizadas
 - Java

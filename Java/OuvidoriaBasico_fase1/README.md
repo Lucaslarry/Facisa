@@ -14,6 +14,15 @@ construido durante o terceiro módulo da universidade unifacisa.
     > O sistema deve cadastrar 5 manifestações de diversos tipos e salva-las em uma estrutura de dados do tipo Array com tamanho já definido de 5.
     > O sistema deverá listar todas as manifestações inseridas no array e mostrar na tela para o usuário.
 
+```bash
+# clonar repositório
+$ git clone https://github.com/lucaslarry/Facisa/tree/main/Java/OuvidoriaBasico_fase1
+# executar o projeto
+```
+Dentro da pasta application:
+```bash
+$ java Main.java
+```
 
 # Tecnologias utilizadas
 - Java
