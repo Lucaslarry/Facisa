@@ -20,10 +20,10 @@ Pré-requisitos: Java 17
 ```bash
 # clonar repositório
 $ git clone https://github.com/lucaslarry/Facisa/tree/main/Java/OuvidoriaBasico_fase1
-# executar o projeto
 ```
 Dentro da pasta application:
 ```bash
+# executar o projeto
 $ java Main.java
 ```
 

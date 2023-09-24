@@ -57,11 +57,12 @@ Pré-requisitos: Java 17
 ```bash
 # clonar repositório
 $ git clone https://github.com/lucaslarry/Facisa/tree/main/Java/ProjetoComercio_fase1
-# executar o projeto
 ```
 Dentro da pasta src:
 ```bash
+# compilar o projeto
 $ javac application/Program.java
+# executar o projeto
 $ java application/Program.java
 ```
 

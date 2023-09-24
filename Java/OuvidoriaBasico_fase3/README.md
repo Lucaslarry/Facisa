@@ -31,10 +31,10 @@ Pré-requisitos: Java 17, MySQL
 ```bash
 # clonar repositório
 $ git clone https://github.com/lucaslarry/Facisa/tree/main/Java/OuvidoriaBasico_fase3
-# executar o projeto
 ```
 Dentro da pasta application:
 ```bash
+# executar o projeto
 $ java Main.java
 ```
 Dentro do MySQL Workbench crie uma nova conexão com o user root e o password lucas, depois, crie as tabelas com os seguintes comandos:
