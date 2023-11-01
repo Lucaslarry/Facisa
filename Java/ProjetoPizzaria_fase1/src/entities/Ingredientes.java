@@ -1,29 +1,46 @@
 package entities;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-
 public class Ingredientes {
-    Set<String> listaIngredientes = new LinkedHashSet<>();
-    String ingrediente;
+    private String ingrediente;
+    private int id;
 
-    public Ingredientes(String novoIngrediente) {
-        this.ingrediente = novoIngrediente;
+    public Ingredientes(String novoIngrediente, int novoId) {
+        this.ingrediente = novoIngrediente.toLowerCase();
+        this.id = novoId;
     }
 
-    public void adicionarIngrediente(String ingrediente) {
-        if (ingredienteExiste(ingrediente)) {
-            throw new PizzariaExceptions("Ingrediente já existente");
-        } else {
-            listaIngredientes.add(ingrediente);
-        }
+    public int getId() {
+        return id;
     }
 
-    private boolean ingredienteExiste(String ingrediente) {
-        return listaIngredientes.contains(ingrediente);
+    @Override
+    public String toString() {
+        return id + ": " + ingrediente;
     }
 
-    public Set<String> getListaIngredientes() {
-        return listaIngredientes;
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((ingrediente == null) ? 0 : ingrediente.hashCode());
+        return result;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Ingredientes other = (Ingredientes) obj;
+        if (ingrediente == null) {
+            if (other.ingrediente != null)
+                return false;
+        } else if (!ingrediente.equals(other.ingrediente))
+            return false;
+        return true;
+    }
+
 }

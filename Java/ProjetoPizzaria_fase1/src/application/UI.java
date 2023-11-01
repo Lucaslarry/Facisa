@@ -12,9 +12,4 @@ public class UI {
         System.out.print("Sua escolha: ");
     }
 
-    public static String FormatarDecimal(Double valor) {
-        String saldo = String.format("%.2f", valor);
-        return saldo;
-    }
-
 }

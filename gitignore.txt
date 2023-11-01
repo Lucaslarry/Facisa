@@ -24,6 +24,8 @@
 /bin/
 /out/
 /.idea/
+/.vscode/
+/lib/
 # Arquivos de configuração IDE
 .idea/
 .vscode/
