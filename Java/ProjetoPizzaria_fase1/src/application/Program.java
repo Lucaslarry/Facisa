@@ -6,6 +6,7 @@ import entities.Ingredientes;
 
 import entities.Pizzaria;
 import entities.PizzariaExceptions;
+import entities.Relatorio;
 
 public class Program {
     public static void main(String[] args) throws Exception {
@@ -33,18 +34,19 @@ public class Program {
                         String[] tempLista = sc.nextLine().split(" ");
                         System.out.print("Nomeie este sabor: ");
                         String sabor = sc.nextLine();
-                        pizzaria.criarPizza(sabor, tempLista);
+                        pizzaria.criarPizza(UI.formatarTexto(sabor), tempLista);
 
                     }
                     case 2 -> {
                         System.out.println("Cardápio: ");
-                        pizzaria.getListaPizzaExistentes().forEach(System.out::println);
-                        System.out.println("Digite o nome sabor de pizza: ");
+                        pizzaria.getListaPizzaExistentes().stream().map(p -> p.getNomeDoSabor())
+                                .forEach(System.out::println);
+                        System.out.print("Digite o nome sabor de pizza: ");
                         String escolhaSabor = sc.nextLine();
-                        System.out.println("Digite o numero da mesa: ");
+                        System.out.print("Digite o numero da mesa: ");
                         int numeroMesa = sc.nextInt();
                         sc.nextLine();
-                        pizzaria.criarPedido(escolhaSabor, numeroMesa);
+                        pizzaria.criarPedido(UI.formatarTexto(escolhaSabor), numeroMesa);
 
                     }
                     case 3 -> {
@@ -53,13 +55,41 @@ public class Program {
                     case 4 -> {
                         System.out.print("Digite o ingrediente a ser adicionado: ");
                         String novoIngrediente = sc.nextLine();
-                        pizzaria.adicionarIngrediente(new Ingredientes(novoIngrediente, idIng));
+                        pizzaria.adicionarIngrediente(new Ingredientes(UI.formatarTexto(novoIngrediente), idIng));
                         idIng++;
+                    }
+                    case 5 -> {
+                        System.out.println(
+                                "Ao total foram servidas: " + Relatorio.getQuantidadeDePizzaSevida() + " pizzas");
+                        String semPedidos = Relatorio.ingredientesNaoPedidos(pizzaria.getListaIngredientesExistentes());
+
+                        if (semPedidos == null) {
+                            System.out.println("Não há ingredientes que não foram pedidos");
+                        } else {
+                            System.out.println("Lista de ingredientes que não foram pedidos pedidos: " + semPedidos);
+                        }
+
+                        System.out.println("O ingrediente mais pedido foi o: "
+                                + Relatorio.getIngredienteMaisPedido().getIngrediente()
+                                + " com um total de " + Relatorio.getQuantidadeDoMaisPedido() + " pedidos");
+                        System.out.println(
+                                "As pizzas tem em média " + Relatorio.getQuantidadeMediaDeIngredientes() + "por pizza");
+
+                    }
+                    case 6 -> {
+                        System.out.println("Nossa pizzaria está fechando, obrigado!");
+                        sair = true;
                     }
 
                 }
             } catch (PizzariaExceptions e) {
                 System.out.println(e.getMessage());
+            } catch (NullPointerException e) {
+                System.out.println("Nenhum pedido ainda foi feito");
+
+            } catch (ExceptionInInitializerError e) {
+                System.out.println("Ainda não foi adicionado nenhum ingrediente ou pizza");
+
             }
 
         }

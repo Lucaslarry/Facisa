@@ -3,14 +3,27 @@ package entities;
 public class Ingredientes {
     private String ingrediente;
     private int id;
+    private int quantidadeDeVezesPedido = 0;
 
     public Ingredientes(String novoIngrediente, int novoId) {
-        this.ingrediente = novoIngrediente.toLowerCase();
+        this.ingrediente = novoIngrediente;
         this.id = novoId;
     }
 
     public int getId() {
         return id;
+    }
+
+    public String getIngrediente() {
+        return ingrediente;
+    }
+
+    public int getQuantidadeDeVezesPedido() {
+        return quantidadeDeVezesPedido;
+    }
+
+    public void setQuantidademaisum() {
+        this.quantidadeDeVezesPedido += 1;
     }
 
     @Override

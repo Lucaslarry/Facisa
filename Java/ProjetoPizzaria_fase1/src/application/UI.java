@@ -12,4 +12,23 @@ public class UI {
         System.out.print("Sua escolha: ");
     }
 
+    public static void printMensagemSucesso(String msg) {
+        System.out.println(msg + " com sucesso!");
+    }
+
+    public static String formatarTexto(String texto) {
+        String[] palavras = texto.split(" ");
+        StringBuilder resultado = new StringBuilder();
+
+        for (String palavra : palavras) {
+            if (!palavra.isEmpty()) {
+                char primeiraLetra = Character.toUpperCase(palavra.charAt(0));
+                String restoDaPalavra = palavra.substring(1);
+                resultado.append(primeiraLetra).append(restoDaPalavra).append(" ");
+            }
+        }
+
+        return resultado.toString().trim();
+    }
+
 }
