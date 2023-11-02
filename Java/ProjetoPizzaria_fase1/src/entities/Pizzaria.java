@@ -81,7 +81,7 @@ public class Pizzaria {
         Relatorio.ingredientePedido(primeiroPar.getKey().getIngredienteDaPizza());
         UI.printMensagemSucesso("Pedido servido: " + primeiroPar.getKey() + "para mesa: " + primeiroPar.getValue());
         listadePedidos.remove(primeiroPar.getKey());
-        Relatorio.setQuantidadePizza();
+        Relatorio.setQuantidadeDePizzaSevida();
 
     }
 

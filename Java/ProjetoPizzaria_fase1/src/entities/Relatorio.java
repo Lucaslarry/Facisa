@@ -3,8 +3,8 @@ package entities;
 import java.util.Set;
 
 public class Relatorio {
-    private static int quantidadeIng = 0;
-    private static int quantidadePizza = 0;
+    private static Double quantidadeIng = 0.0;
+    private static Double quantidadePizza = 0.0;
     private static int quantidadeDePizzaSevida = 0;
     private static Ingredientes ingredienteMaisPedido = null;
 
@@ -13,24 +13,27 @@ public class Relatorio {
     }
 
     public static void setQuantidadePizza() {
-        quantidadeDePizzaSevida += 1;
+        quantidadePizza += 1;
+    }
 
+    public static void setQuantidadeDePizzaSevida() {
+        quantidadeDePizzaSevida += 1;
     }
 
     public static int getQuantidadeDePizzaSevida() {
         return quantidadeDePizzaSevida;
     }
 
-    public static void setQuantidadeIng(int quantidadeIng) {
-        quantidadeIng += quantidadeIng;
+    public static void setQuantidadeIng(int novaQuantidadeIng) {
+        quantidadeIng += novaQuantidadeIng;
     }
 
     public static int getQuantidadeDoMaisPedido() {
         return ingredienteMaisPedido.getQuantidadeDeVezesPedido();
     }
 
-    public static int getQuantidadeMediaDeIngredientes() {
-        return quantidadeIng / quantidadePizza;
+    public static String getQuantidadeMediaDeIngredientes() {
+        return String.format("%.2f", (quantidadeIng / quantidadePizza));
     }
 
     private static void testeIngrediente(Ingredientes ing) {

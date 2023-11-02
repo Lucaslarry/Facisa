@@ -1,5 +1,6 @@
 package application;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import entities.Ingredientes;
@@ -60,20 +61,22 @@ public class Program {
                     }
                     case 5 -> {
                         System.out.println(
-                                "Ao total foram servidas: " + Relatorio.getQuantidadeDePizzaSevida() + " pizzas");
-                        String semPedidos = Relatorio.ingredientesNaoPedidos(pizzaria.getListaIngredientesExistentes());
+                                "Ao total foram servidas " + Relatorio.getQuantidadeDePizzaSevida() + " pizzas");
 
+                        System.out.println(
+                                "As pizzas tem em média " + Relatorio.getQuantidadeMediaDeIngredientes()
+                                        + " ingredientes por pizza");
+
+                        System.out.println("O ingrediente mais pedido foi "
+                                + Relatorio.getIngredienteMaisPedido().getIngrediente()
+                                + " com um total de " + Relatorio.getQuantidadeDoMaisPedido() + " pedidos");
+
+                        String semPedidos = Relatorio.ingredientesNaoPedidos(pizzaria.getListaIngredientesExistentes());
                         if (semPedidos == null) {
                             System.out.println("Não há ingredientes que não foram pedidos");
                         } else {
-                            System.out.println("Lista de ingredientes que não foram pedidos pedidos: " + semPedidos);
+                            System.out.println("Lista de ingredientes que não ainda não foram pedidos: " + semPedidos);
                         }
-
-                        System.out.println("O ingrediente mais pedido foi o: "
-                                + Relatorio.getIngredienteMaisPedido().getIngrediente()
-                                + " com um total de " + Relatorio.getQuantidadeDoMaisPedido() + " pedidos");
-                        System.out.println(
-                                "As pizzas tem em média " + Relatorio.getQuantidadeMediaDeIngredientes() + "por pizza");
 
                     }
                     case 6 -> {
@@ -84,12 +87,13 @@ public class Program {
                 }
             } catch (PizzariaExceptions e) {
                 System.out.println(e.getMessage());
-            } catch (NullPointerException e) {
+            } catch (NullPointerException | ArithmeticException e) {
                 System.out.println("Nenhum pedido ainda foi feito");
-
             } catch (ExceptionInInitializerError e) {
                 System.out.println("Ainda não foi adicionado nenhum ingrediente ou pizza");
-
+            } catch (NumberFormatException | InputMismatchException e) {
+                System.out.println("Valor inválido");
+                sc.nextLine();
             }
 
         }
