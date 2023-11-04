@@ -2,6 +2,7 @@ package entities;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Map.Entry;
@@ -25,26 +26,26 @@ public class Pizzaria {
         UI.printMensagemSucesso("Ingrediente adicionado");
     }
 
-    public void criarPizza(String sabor, String[] lista) {
+    public void criarPizza(String sabor, List<String> lista) {
         Ingredientes[] listaIng = transformarIngrediente(lista);
         if (listaIng == null) {
             throw new PizzariaExceptions("Um ou mais ingredientes não existem.");
         }
         listaPizzaExistentes.add(new Pizza(sabor, listaIng));
         UI.printMensagemSucesso("Pizza criada");
-        Relatorio.setQuantidadeIng(lista.length);
+        Relatorio.setQuantidadeIng(lista.size());
         Relatorio.setQuantidadePizza();
 
     }
 
-    private Ingredientes[] transformarIngrediente(String[] lista) {
-        Ingredientes[] ingredientes = new Ingredientes[lista.length];
+    private Ingredientes[] transformarIngrediente(List<String> lista) {
+        Ingredientes[] ingredientes = new Ingredientes[lista.size()];
         int count = 0;
         for (Ingredientes ing : listaIngredientesExistentes) {
-            if (count >= lista.length) {
+            if (count >= lista.size()) {
                 return ingredientes;
             }
-            if (ing.getId() == Integer.parseInt(lista[count])) {
+            if (ing.getId() == Integer.parseInt(lista.get(count))) {
                 ingredientes[count] = ing;
                 count++;
             }

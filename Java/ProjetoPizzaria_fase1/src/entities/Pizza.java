@@ -31,9 +31,10 @@ public class Pizza {
         StringBuilder sb = new StringBuilder();
         for (Ingredientes ing : ingredienteDaPizza) {
             if (ing != null) {
-                sb.append(ing.getIngrediente() + " ");
+                sb.append(ing.getIngrediente() + ", ");
             }
         }
+        sb.setLength(sb.length() - 1);
         descricao = nomeDoSabor + " vem com: " + sb;
     }
 

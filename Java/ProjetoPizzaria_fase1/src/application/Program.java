@@ -1,6 +1,8 @@
 package application;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import entities.Ingredientes;
@@ -29,14 +31,41 @@ public class Program {
                 switch (opcaoPrincipal) {
                     default -> System.out.println("Opção Inválida");
                     case 1 -> {
-                        pizzaria.getListaIngredientesExistentes().forEach(System.out::println);
-                        System.out.println("Exemplo: 1 2 3 4 5");
-                        System.out.print("Escolha seus ingredientes: ");
-                        String[] tempLista = sc.nextLine().split(" ");
-                        System.out.print("Nomeie este sabor: ");
-                        String sabor = sc.nextLine();
-                        pizzaria.criarPizza(UI.formatarTexto(sabor), tempLista);
+                        boolean adicionado = false;
+                        List<String> tempLista = new ArrayList<>();
+                        while (adicionado == false) {
+                            UI.menuPizza();
+                            int escolhaPizza = sc.nextInt();
+                            sc.nextLine();
 
+                            if (escolhaPizza == 1) {
+                                pizzaria.getListaIngredientesExistentes().forEach(System.out::println);
+                                System.out.print("Escolha seu ingrediente: ");
+                                String novoIng = sc.nextLine();
+                                tempLista.add(novoIng);
+                            }
+                            if (escolhaPizza == 2) {
+                                if (tempLista.isEmpty()) {
+                                    System.out.println("Nenhum ingrediente foi adicionado");
+                                } else {
+
+                                    System.out.println("Ultimo ingrediente removido com sucesso!");
+                                    tempLista.remove((tempLista.size() - 1));
+
+                                }
+                            }
+                            if (escolhaPizza == 3) {
+                                System.out.print("Nomeie este sabor: ");
+                                String sabor = sc.nextLine();
+                                pizzaria.criarPizza(UI.formatarTexto(sabor), tempLista);
+                                adicionado = true;
+                            }
+                            if (escolhaPizza == 4) {
+                                System.out.println("Voltando...");
+                                adicionado = true;
+                            }
+
+                        }
                     }
                     case 2 -> {
                         System.out.println("Cardápio: ");

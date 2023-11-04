@@ -33,7 +33,11 @@ public class Relatorio {
     }
 
     public static String getQuantidadeMediaDeIngredientes() {
-        return String.format("%.2f", (quantidadeIng / quantidadePizza));
+        if ((quantidadeIng / quantidadePizza) >= 1) {
+            return String.format("%.2f", (quantidadeIng / quantidadePizza));
+        } else {
+            return "0";
+        }
     }
 
     private static void testeIngrediente(Ingredientes ing) {
@@ -56,18 +60,18 @@ public class Relatorio {
     }
 
     public static String ingredientesNaoPedidos(Set<Ingredientes> lista) {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         for (Ingredientes ing : lista) {
             if (ing != null && ing.getQuantidadeDeVezesPedido() == 0) {
-                stringBuilder.append(ing.getIngrediente());
-                stringBuilder.append(", ");
+                sb.append(ing.getIngrediente());
+                sb.append(", ");
             }
         }
-        if (stringBuilder.length() == 0) {
+        if (sb.length() == 0) {
             return null;
         }
-        stringBuilder.setLength(stringBuilder.length() - 2);
-        return stringBuilder.toString().trim();
+        sb.setLength(sb.length() - 2);
+        return sb.toString().trim();
     }
 
 }
