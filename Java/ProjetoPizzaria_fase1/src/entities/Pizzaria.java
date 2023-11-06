@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -11,7 +12,7 @@ import application.UI;
 
 public class Pizzaria {
     private Set<Ingredientes> listaIngredientesExistentes = new LinkedHashSet<>();
-    private Set<Pizza> listaPizzaExistentes = new LinkedHashSet<>();
+    private Set<Pizza> listaPizzaExistentes = new HashSet<>();
     private Map<Pizza, Integer> listadePedidos = new LinkedHashMap<>();
 
     public Pizzaria() {
