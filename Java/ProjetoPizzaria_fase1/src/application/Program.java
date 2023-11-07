@@ -1,8 +1,7 @@
 package application;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.List;
+import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -33,7 +32,7 @@ public class Program {
                     default -> System.out.println("Opção Inválida");
                     case 1 -> {
                         boolean adicionado = false;
-                        List<String> tempLista = new ArrayList<>();
+                        LinkedList<String> tempLista = new LinkedList<>();
                         while (adicionado == false) {
                             UI.menuPizza();
                             int escolhaPizza = sc.nextInt();
@@ -51,7 +50,7 @@ public class Program {
                                 } else {
 
                                     System.out.println("Ultimo ingrediente removido com sucesso!");
-                                    tempLista.remove((tempLista.size() - 1));
+                                    tempLista.removeLast();
 
                                 }
                             }

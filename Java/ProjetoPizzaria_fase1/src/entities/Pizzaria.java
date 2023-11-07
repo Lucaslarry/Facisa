@@ -75,7 +75,7 @@ public class Pizzaria {
 
     public void servirPedido() {
         if (listadePedidos.isEmpty()) {
-            throw new PizzariaExceptions("Não existe pedidos");
+            throw new PizzariaExceptions("Não existem pedidos");
         }
         Pizza primeiraPizza = listadePedidos.getFirst().getPizza();
         Relatorio.ingredientePedido(primeiraPizza.getIngredienteDaPizza());
