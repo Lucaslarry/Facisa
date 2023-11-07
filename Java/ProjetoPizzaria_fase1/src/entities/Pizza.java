@@ -34,8 +34,8 @@ public class Pizza {
                 sb.append(ing.getIngrediente() + ", ");
             }
         }
-        sb.setLength(sb.length() - 1);
-        descricao = nomeDoSabor + " vem com: " + sb;
+        sb.setLength(sb.length() - 2);
+        descricao = nomeDoSabor + " que vem com: " + sb;
     }
 
     public Ingredientes[] getIngredienteDaPizza() {

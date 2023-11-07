@@ -1,19 +1,17 @@
 package entities;
 
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import java.util.Map.Entry;
 
 import application.UI;
 
 public class Pizzaria {
     private Set<Ingredientes> listaIngredientesExistentes = new LinkedHashSet<>();
     private Set<Pizza> listaPizzaExistentes = new HashSet<>();
-    private Map<Pizza, Integer> listadePedidos = new LinkedHashMap<>();
+    private LinkedList<Pedido> listadePedidos = new LinkedList<>();
 
     public Pizzaria() {
 
@@ -62,7 +60,7 @@ public class Pizzaria {
         if (!listaPizzaExistentes.stream().anyMatch(p -> p.getNomeDoSabor().equals(sabor))) {
             throw new PizzariaExceptions("Este sabor de pizza não está disponivel no cardápio");
         }
-        listadePedidos.put(saborParaPizza(sabor), mesa);
+        listadePedidos.add(new Pedido(saborParaPizza(sabor), new Mesa(mesa)));
         UI.printMensagemSucesso("Pedido criado");
     }
 
@@ -79,10 +77,10 @@ public class Pizzaria {
         if (listadePedidos.isEmpty()) {
             throw new PizzariaExceptions("Não existe pedidos");
         }
-        Entry<Pizza, Integer> primeiroPar = listadePedidos.entrySet().iterator().next();
-        Relatorio.ingredientePedido(primeiroPar.getKey().getIngredienteDaPizza());
-        UI.printMensagemSucesso("Pedido servido: " + primeiroPar.getKey() + "para mesa: " + primeiroPar.getValue());
-        listadePedidos.remove(primeiroPar.getKey());
+        Pizza primeiraPizza = listadePedidos.getFirst().getPizza();
+        Relatorio.ingredientePedido(primeiraPizza.getIngredienteDaPizza());
+        UI.printMensagemSucesso("Servido: " + listadePedidos.getFirst());
+        listadePedidos.remove();
         Relatorio.setQuantidadeDePizzaSevida();
 
     }

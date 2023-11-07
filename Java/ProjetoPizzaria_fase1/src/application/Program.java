@@ -3,6 +3,7 @@ package application;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 import entities.Ingredientes;
@@ -16,7 +17,7 @@ public class Program {
         boolean sair = false;
         int idIng = 1;
         Pizzaria pizzaria = new Pizzaria();
-
+        Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
         while (sair == false) {
             try {
@@ -24,8 +25,8 @@ public class Program {
                 int opcaoPrincipal = sc.nextInt();
                 sc.nextLine();
 
-                if (opcaoPrincipal == 1 && pizzaria.getListaIngredientesExistentes().isEmpty()) {
-                    throw new PizzariaExceptions("Não é possivel criar uma pizza sem ingredientes.");
+                if (opcaoPrincipal != 4 && opcaoPrincipal != 6 && pizzaria.getListaIngredientesExistentes().isEmpty()) {
+                    throw new PizzariaExceptions("Não é possivel fazer isso antes de criar um ingrediente.");
                 }
 
                 switch (opcaoPrincipal) {
