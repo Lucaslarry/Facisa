@@ -1,7 +1,6 @@
 package entities;
 
 import java.util.HashSet;
-import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -9,46 +8,104 @@ import java.util.Set;
 import application.UI;
 
 public class Pizzaria {
-    private Set<Ingredientes> listaIngredientesExistentes = new LinkedHashSet<>();
-    private Set<Pizza> listaPizzaExistentes = new HashSet<>();
-    private LinkedList<Pedido> listadePedidos = new LinkedList<>();
+    private Set<Ingrediente> listaIngredientes = new HashSet<>();
+    private Set<Pizza> listaPizzas = new HashSet<>();
+    private LinkedList<Pedido> listaPedidos = new LinkedList<>();
 
     public Pizzaria() {
 
     }
 
-    public void adicionarIngrediente(Ingredientes ingrediente) {
-        if (ingredienteExiste(ingrediente)) {
+    public Set<Ingrediente> getlistaIngredientes() {
+        return listaIngredientes;
+    }
+
+    public Set<Pizza> getlistaPizzas() {
+        return listaPizzas;
+    }
+
+    /*
+     * Adiciona um novo ingrediente ao conjunto de ingredientes.
+     *
+     * @param novoIngrediente: O ingrediente a ser adicionado.
+     * 
+     * @throws PizzariaExceptions: Se o ingrediente já existe, uma exceção é
+     * lançada.
+     */
+    public void adicionarIngrediente(Ingrediente novoIngrediente) {
+        // Testa se o ingrediente já existe dentro do conjunto
+        if (ingredienteExiste(novoIngrediente)) {
             throw new PizzariaExceptions("Ingrediente já existente");
         }
-        listaIngredientesExistentes.add(ingrediente);
+
+        // Adiciona o novo ingrediente ao conjunto
+        listaIngredientes.add(novoIngrediente);
+
+        // Imprime uma mensagem de sucesso
         UI.printMensagemSucesso("Ingrediente adicionado");
     }
 
-    public void criarPizza(String sabor, List<String> lista) {
-        Ingredientes[] listaIng = transformarIngrediente(lista);
+    /*
+     * Cria uma nova pizza com o sabor especificado e a lista de ingredientes
+     * fornecida.
+     * 
+     * @param novoSabor: O sabor da nova pizza a ser criada.
+     * 
+     * @param stringIngredientes: Uma lista encadeada de nomes de ingredientes a
+     * serem adicionados à pizza.
+     * 
+     * @throws PizzariaExceptions: Se um ou mais ingredientes não existirem, uma
+     * exceção é lançada.
+     */
+    public void criarPizza(String novoSabor, LinkedList<String> stringIngredientes) {
+        // Converte a lista de nomes de ingredientes em um array de Ingredientes
+        Ingrediente[] listaIng = transformarIngrediente(stringIngredientes);
+
+        // Verifica se os ingredientes já foram previamente adicionados
         if (listaIng == null) {
             throw new PizzariaExceptions("Um ou mais ingredientes não existem.");
         }
-        listaPizzaExistentes.add(new Pizza(sabor, listaIng));
+
+        // Cria uma nova pizza com o sabor e a lista de ingredientes especificados
+        listaPizzas.add(new Pizza(novoSabor, listaIng));
+
+        // Imprime uma mensagem de sucesso
         UI.printMensagemSucesso("Pizza criada");
-        Relatorio.setQuantidadeIng(lista.size());
+
+        // Atualiza as estatísticas
+        Relatorio.setQuantidadeIng(stringIngredientes.size());
         Relatorio.setQuantidadePizza();
 
     }
 
-    private Ingredientes[] transformarIngrediente(List<String> lista) {
-        Ingredientes[] ingredientes = new Ingredientes[lista.size()];
+    /*
+     * Converte uma lista de nomes de ingredientes em um array de objetos
+     * Ingrediente correspondentes.
+     *
+     * @param lista: A lista de nomes de ingredientes a serem convertidos.
+     *
+     * @return Um array de objetos Ingrediente correspondentes aos nomes na lista.
+     * Retorna null se um nome na lista não corresponder a nenhum
+     * Ingrediente.
+     */
+    private Ingrediente[] transformarIngrediente(List<String> lista) {
+        Ingrediente[] ingredientes = new Ingrediente[lista.size()];
         int count = 0;
-        for (Ingredientes ing : listaIngredientesExistentes) {
-            if (count >= lista.size()) {
+
+        // Percorre a lista de nomes de ingredientes
+        for (Ingrediente ing : listaIngredientes) {
+            if (count == lista.size()) {
                 return ingredientes;
             }
-            if (ing.getId() == Integer.parseInt(lista.get(count))) {
+
+            // Verifica se o ingrediente atual é igual ao ingrediente na posição da lista
+            if (ing.getIngrediente().equals(lista.get(count))) {
                 ingredientes[count] = ing;
                 count++;
             }
         }
+
+        // Verifica se nenhum nome de ingrediente correspondeu
         if (count == 0) {
             return null;
         }
@@ -56,16 +113,39 @@ public class Pizzaria {
         return ingredientes;
     }
 
+    /*
+     * Cria um novo pedido com o sabor de pizza especificado para a mesa informada.
+     *
+     * @param sabor: O sabor da pizza a ser incluída no pedido.
+     * 
+     * @param mesa: O número da mesa para a qual o pedido está sendo criado.
+     * 
+     * @throws PizzariaExceptions: Se o sabor de pizza não estiver disponível no
+     * cardápio, uma exceção é lançada.
+     */
     public void criarPedido(String sabor, int mesa) {
-        if (!listaPizzaExistentes.stream().anyMatch(p -> p.getNomeDoSabor().equals(sabor))) {
+        // Verifica se o sabor de pizza está disponível no cardápio
+        if (!listaPizzas.stream().anyMatch(p -> p.getNomeDoSabor().equals(sabor))) {
             throw new PizzariaExceptions("Este sabor de pizza não está disponivel no cardápio");
         }
-        listadePedidos.add(new Pedido(saborParaPizza(sabor), new Mesa(mesa)));
+
+        // Cria um novo pedido com o sabor de pizza e a mesa informados
+        listaPedidos.add(new Pedido(saborParaPizza(sabor), new Mesa(mesa)));
+
+        // Imprime uma mensagem de sucesso
         UI.printMensagemSucesso("Pedido criado");
     }
 
+    /*
+     * Encontra e retorna uma instância de Pizza com base no sabor especificado.
+     *
+     * @param sabor: O sabor da pizza a ser encontrado.
+     * 
+     * @return Uma instância de Pizza correspondente ao sabor ou null se não
+     * encontrada.
+     */
     private Pizza saborParaPizza(String sabor) {
-        for (Pizza pizzas : listaPizzaExistentes) {
+        for (Pizza pizzas : listaPizzas) {
             if (pizzas.getNomeDoSabor().equals(sabor)) {
                 return pizzas;
             }
@@ -73,27 +153,39 @@ public class Pizzaria {
         return null;
     }
 
+    /*
+     * Serve o primeiro pedido na lista de pedidos, atualizando as estatísticas e
+     * removendo o pedido.
+     *
+     * @throws PizzariaExceptions: Se a lista de pedidos estiver vazia, uma exceção
+     * é
+     * lançada.
+     */
     public void servirPedido() {
-        if (listadePedidos.isEmpty()) {
+        // Verifica se a lista de pedidos está vazia
+        if (listaPedidos.isEmpty()) {
             throw new PizzariaExceptions("Não existem pedidos");
         }
-        Pizza primeiraPizza = listadePedidos.getFirst().getPizza();
+
+        // Obtém a primeira pizza no pedido
+        Pizza primeiraPizza = listaPedidos.getFirst().getPizza();
+
+        // Registra os ingredientes pedidos para fins estatísticos
         Relatorio.ingredientePedido(primeiraPizza.getIngredienteDaPizza());
-        UI.printMensagemSucesso("Servido: " + listadePedidos.getFirst());
-        listadePedidos.remove();
+
+        // Imprime uma mensagem de sucesso
+        UI.printMensagemSucesso("Servido: " + listaPedidos.getFirst());
+
+        // Remove o primeiro pedido da lista
+        listaPedidos.remove();
+
+        // Atualiza as estatísticas
         Relatorio.setQuantidadeDePizzaSevida();
 
     }
 
-    private boolean ingredienteExiste(Ingredientes ingrediente) {
-        return listaIngredientesExistentes.contains(ingrediente);
-    }
-
-    public Set<Ingredientes> getListaIngredientesExistentes() {
-        return listaIngredientesExistentes;
-    }
-
-    public Set<Pizza> getListaPizzaExistentes() {
-        return listaPizzaExistentes;
+    private boolean ingredienteExiste(Ingrediente ingrediente) {
+        // Verifica se o ingrediente já existe na lista
+        return listaIngredientes.contains(ingrediente);
     }
 }

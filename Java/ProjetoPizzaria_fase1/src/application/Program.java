@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Scanner;
 
-import entities.Ingredientes;
+import entities.Ingrediente;
 
 import entities.Pizzaria;
 import entities.PizzariaExceptions;
@@ -14,7 +14,6 @@ import entities.Relatorio;
 public class Program {
     public static void main(String[] args) throws Exception {
         boolean sair = false;
-        int idIng = 1;
         Pizzaria pizzaria = new Pizzaria();
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
@@ -24,7 +23,7 @@ public class Program {
                 int opcaoPrincipal = sc.nextInt();
                 sc.nextLine();
 
-                if (opcaoPrincipal != 4 && opcaoPrincipal != 6 && pizzaria.getListaIngredientesExistentes().isEmpty()) {
+                if (opcaoPrincipal != 4 && opcaoPrincipal != 6 && pizzaria.getlistaIngredientes().isEmpty()) {
                     throw new PizzariaExceptions("Não é possivel fazer isso antes de criar um ingrediente.");
                 }
 
@@ -39,17 +38,16 @@ public class Program {
                             sc.nextLine();
 
                             if (escolhaPizza == 1) {
-                                pizzaria.getListaIngredientesExistentes().forEach(System.out::println);
-                                System.out.print("Escolha seu ingrediente: ");
+                                pizzaria.getlistaIngredientes().forEach(System.out::println);
+                                System.out.print("Digite no nome do ingrediente: ");
                                 String novoIng = sc.nextLine();
-                                tempLista.add(novoIng);
+                                tempLista.add(UI.formatarTexto(novoIng));
                             }
                             if (escolhaPizza == 2) {
                                 if (tempLista.isEmpty()) {
                                     System.out.println("Nenhum ingrediente foi adicionado");
                                 } else {
-
-                                    System.out.println("Ultimo ingrediente removido com sucesso!");
+                                    System.out.println(tempLista.getLast() + " removido com sucesso!");
                                     tempLista.removeLast();
 
                                 }
@@ -69,7 +67,7 @@ public class Program {
                     }
                     case 2 -> {
                         System.out.println("Cardápio: ");
-                        pizzaria.getListaPizzaExistentes().stream().map(p -> p.getNomeDoSabor())
+                        pizzaria.getlistaPizzas().stream().map(p -> p.getNomeDoSabor())
                                 .forEach(System.out::println);
                         System.out.print("Digite o nome sabor de pizza: ");
                         String escolhaSabor = sc.nextLine();
@@ -85,8 +83,7 @@ public class Program {
                     case 4 -> {
                         System.out.print("Digite o ingrediente a ser adicionado: ");
                         String novoIngrediente = sc.nextLine();
-                        pizzaria.adicionarIngrediente(new Ingredientes(UI.formatarTexto(novoIngrediente), idIng));
-                        idIng++;
+                        pizzaria.adicionarIngrediente(new Ingrediente(UI.formatarTexto(novoIngrediente)));
                     }
                     case 5 -> {
                         System.out.println(
@@ -100,7 +97,7 @@ public class Program {
                                 + Relatorio.getIngredienteMaisPedido().getIngrediente()
                                 + " com um total de " + Relatorio.getQuantidadeDoMaisPedido() + " pedidos");
 
-                        String semPedidos = Relatorio.ingredientesNaoPedidos(pizzaria.getListaIngredientesExistentes());
+                        String semPedidos = Relatorio.ingredientesNaoPedidos(pizzaria.getlistaIngredientes());
                         if (semPedidos == null) {
                             System.out.println("Não há ingredientes que não foram pedidos");
                         } else {
