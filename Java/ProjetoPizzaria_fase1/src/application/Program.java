@@ -17,10 +17,14 @@ public class Program {
         Pizzaria pizzaria = new Pizzaria();
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
-        while (sair == false) {
+        String[] listaPreIng = { "Frango", "Queijo", "Calabresa" };
+        if (listaPreIng.length > 0) {
+            pizzaria.addIngPre(listaPreIng);
+        }
+
+        while (!sair) {
             try {
-                UI.menu();
-                int opcaoPrincipal = sc.nextInt();
+                int opcaoPrincipal = UI.menu(sc);
                 sc.nextLine();
 
                 if (opcaoPrincipal != 4 && opcaoPrincipal != 6 && pizzaria.getlistaIngredientes().isEmpty()) {
@@ -30,51 +34,40 @@ public class Program {
                 switch (opcaoPrincipal) {
                     default -> System.out.println("Opção Inválida");
                     case 1 -> {
-                        boolean adicionado = false;
                         LinkedList<String> tempLista = new LinkedList<>();
-                        while (adicionado == false) {
-                            UI.menuPizza();
-                            int escolhaPizza = sc.nextInt();
+                        pizzaria.prepararPizza(sc, tempLista);
+
+                    }
+
+                    case 2 -> {
+                        boolean escolher = false;
+                        while (!escolher) {
+                            LinkedList<String> tempLista = new LinkedList<>();
+                            int escolhaPedido = UI.menuPedido(sc);
                             sc.nextLine();
+                            String escolhaSabor = null;
 
-                            if (escolhaPizza == 1) {
-                                pizzaria.getlistaIngredientes().forEach(System.out::println);
-                                System.out.print("Digite no nome do ingrediente: ");
-                                String novoIng = sc.nextLine();
-                                tempLista.add(UI.formatarTexto(novoIng));
+                            if (escolhaPedido == 1) {
+                                System.out.println("Cardápio: ");
+                                pizzaria.getlistaPizzas().stream().map(p -> p.getNomeDoSabor())
+                                        .forEach(System.out::println);
+                                System.out.print("Digite o nome sabor de pizza: ");
+                                escolhaSabor = sc.nextLine();
                             }
-                            if (escolhaPizza == 2) {
-                                if (tempLista.isEmpty()) {
-                                    System.out.println("Nenhum ingrediente foi adicionado");
-                                } else {
-                                    System.out.println(tempLista.getLast() + " removido com sucesso!");
-                                    tempLista.removeLast();
-
-                                }
+                            if (escolhaPedido == 2) {
+                                escolhaSabor = pizzaria.prepararPizza(sc, tempLista);
                             }
-                            if (escolhaPizza == 3) {
-                                System.out.print("Nomeie este sabor: ");
-                                String sabor = sc.nextLine();
-                                pizzaria.criarPizza(UI.formatarTexto(sabor), tempLista);
-                                adicionado = true;
-                            }
-                            if (escolhaPizza == 4) {
+                            if (escolhaPedido == 3) {
                                 System.out.println("Voltando...");
-                                adicionado = true;
+                                escolher = true;
                             }
+                            System.out.print("Digite o numero da mesa: ");
+                            int numeroMesa = sc.nextInt();
+                            sc.nextLine();
+                            pizzaria.criarPedido(UI.formatarTexto(escolhaSabor), numeroMesa);
+                            escolher = true;
 
                         }
-                    }
-                    case 2 -> {
-                        System.out.println("Cardápio: ");
-                        pizzaria.getlistaPizzas().stream().map(p -> p.getNomeDoSabor())
-                                .forEach(System.out::println);
-                        System.out.print("Digite o nome sabor de pizza: ");
-                        String escolhaSabor = sc.nextLine();
-                        System.out.print("Digite o numero da mesa: ");
-                        int numeroMesa = sc.nextInt();
-                        sc.nextLine();
-                        pizzaria.criarPedido(UI.formatarTexto(escolhaSabor), numeroMesa);
 
                     }
                     case 3 -> {

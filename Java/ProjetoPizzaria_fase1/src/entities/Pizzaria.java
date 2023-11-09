@@ -3,6 +3,7 @@ package entities;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
 
 import application.UI;
@@ -22,6 +23,18 @@ public class Pizzaria {
 
     public Set<Pizza> getlistaPizzas() {
         return listaPizzas;
+    }
+
+    /*
+     * Adiciona novos ingrediente ao conjunto de ingredientes.
+     *
+     * @param novoIngrediente: Lista de ingredientes a ser adicionados.
+     */
+    public void addIngPre(String[] lista) {
+        for (String ing : lista) {
+            adicionarIngrediente(new Ingrediente(UI.formatarTexto(ing)));
+        }
+
     }
 
     /*
@@ -46,6 +59,90 @@ public class Pizzaria {
     }
 
     /*
+     * Solicita o nome de um ingrediente inserido pelo usuário.
+     *
+     * @param sc: O objeto Scanner usado para a entrada do usuário.
+     * 
+     * @return: O nome do ingrediente formatado.
+     */
+    private String escolherIng(Scanner sc) {
+        getlistaIngredientes().forEach(System.out::println);
+        System.out.print("Digite no nome do ingrediente: ");
+        String novoIng = sc.nextLine();
+        return UI.formatarTexto(novoIng);
+    }
+
+    /*
+     * Remove o último ingrediente adicionado à lista e exibe uma mensagem
+     * correspondente.
+     *
+     * @param lista: A lista encadeada de ingredientes.
+     */
+    private void excluirUltimo(LinkedList<String> lista) {
+        if (lista.isEmpty()) {
+            System.out.println("Nenhum ingrediente foi adicionado");
+        } else {
+            System.out.println(lista.getLast() + " removido com sucesso!");
+            lista.removeLast();
+        }
+    }
+
+    /*
+     * Solicita ao usuário que nomeie um novo sabor e retorna o nome do sabor.
+     *
+     * @param sc: O Scanner utilizado para entrada do usuário.
+     * 
+     * @return: O nome do sabor fornecido pelo usuário.
+     */
+    private String nomearSabor(Scanner sc) {
+        System.out.print("Nomeie este sabor: ");
+        String sabor = sc.nextLine();
+        return sabor;
+    }
+
+    /*
+     * Guia o usuário na preparação de uma pizza,
+     * permitindo adicionar ingredientes,
+     * excluir o último ingrediente
+     * nomear o sabor
+     * e criar a pizza.
+     * Retorna o nome do sabor da pizza criada
+     * ou null se o usuário optar por voltar.
+     *
+     * @param sc: O Scanner utilizado para entrada do usuário.
+     * 
+     * @param lista: A lista de ingredientes da pizza em construção.
+     * 
+     * @return: O nome do sabor da pizza criada ou null se o usuário optar por
+     * voltar.
+     */
+    public String prepararPizza(Scanner sc, LinkedList<String> lista) {
+        boolean adicionar = false;
+        while (!adicionar) {
+            int escolhaPizza = UI.menuPizza(sc);
+            sc.nextLine();
+
+            if (escolhaPizza == 1) {
+                lista.add(escolherIng(sc));
+            }
+            if (escolhaPizza == 2) {
+                excluirUltimo(lista);
+            }
+            if (escolhaPizza == 3) {
+                String sabor = nomearSabor(sc);
+                criarPizza(UI.formatarTexto(sabor), lista);
+                return sabor;
+            }
+            if (escolhaPizza == 4) {
+                System.out.println("Voltando...");
+                adicionar = true;
+            }
+        }
+        return null;
+
+    }
+
+    /*
      * Cria uma nova pizza com o sabor especificado e a lista de ingredientes
      * fornecida.
      * 
@@ -57,7 +154,7 @@ public class Pizzaria {
      * @throws PizzariaExceptions: Se um ou mais ingredientes não existirem, uma
      * exceção é lançada.
      */
-    public void criarPizza(String novoSabor, LinkedList<String> stringIngredientes) {
+    private void criarPizza(String novoSabor, LinkedList<String> stringIngredientes) {
         // Converte a lista de nomes de ingredientes em um array de Ingredientes
         Ingrediente[] listaIng = transformarIngrediente(stringIngredientes);
 
